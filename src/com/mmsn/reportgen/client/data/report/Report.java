@@ -1,0 +1,197 @@
+package com.mmsn.reportgen.client.data.report;
+
+import java.util.Date;
+import java.util.List;
+
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONBoolean;
+import com.google.gwt.json.client.JSONNumber;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
+import com.google.gwt.json.client.JSONValue;
+import com.mmsn.reportgen.client.data.attachment.Attachment;
+import com.mmsn.reportgen.client.data.attachment.AttachmentList;
+import com.mmsn.reportgen.client.data.volunteer.Volunteer;
+
+public class Report
+{
+   // --------------------------------------------------------------------------
+   // Private Data
+   // --------------------------------------------------------------------------
+   
+   private int id;
+   
+   private Volunteer volunteer;
+   
+   private ReportCall reportCall;
+   
+   private boolean isPhotoTaken;
+   
+   private ReportInvestigation reportInvestigation;
+   
+   private AttachmentList attachmentList = new AttachmentList();
+   
+   // --------------------------------------------------------------------------
+   // Constructor
+   // --------------------------------------------------------------------------
+   
+   public Report()
+   {
+      //
+      // Do nothing
+      //
+   }
+   
+   // --------------------------------------------------------------------------
+   // Public Members
+   // --------------------------------------------------------------------------
+   
+   public JSONValue getJson()
+   {
+      JSONObject request = new JSONObject();
+      
+      DateTimeFormat minuteFormater = DateTimeFormat.getFormat("m");
+      DateTimeFormat hourFormater = DateTimeFormat.getFormat("H");
+      DateTimeFormat monthFormater = DateTimeFormat.getFormat("M");
+      DateTimeFormat dayFormater = DateTimeFormat.getFormat("d");
+      DateTimeFormat yearFormater = DateTimeFormat.getFormat("y");
+      
+      request.put("id", new JSONNumber(getId()));
+      
+      Volunteer volunteer = getVolunteer();
+      
+      if(volunteer != null)
+      {
+         request.put("volunteer_id", new JSONNumber(volunteer.getId()));
+      }
+      else
+      {
+         request.put("volunteer_id", new JSONNumber(-1));
+      }
+      
+      ReportCall reportCall = getReportCall();
+      
+      request.put("responder", new JSONString(reportCall.getResponder()));
+      
+      Date callDate = reportCall.getDate();
+      
+      request.put("call_date_minute", new JSONString(minuteFormater.format(callDate)));
+      request.put("call_date_hour", new JSONString(hourFormater.format(callDate)));
+      request.put("call_date_dayofmonth", new JSONString(dayFormater.format(callDate)));
+      request.put("call_date_month", new JSONString(monthFormater.format(callDate)));
+      request.put("call_date_year", new JSONString(yearFormater.format(callDate)));      
+      request.put("call_from", new JSONString(reportCall.getCallFrom()));
+      request.put("caller_name", new JSONString(reportCall.getCallerName()));
+      request.put("caller_phone_number", new JSONString(reportCall.getCallerPhoneNumber()));      
+      request.put("call_location", new JSONString(reportCall.getLocation()));      
+      request.put("call_species", new JSONString(reportCall.getSpecies()));      
+      request.put("when_first_seen", new JSONString(reportCall.getWhenFirstSeen()));
+      request.put("call_comments", new JSONString(reportCall.getComments()));
+      request.put("call_referred_to", new JSONString(reportCall.getCallReferredTo()));
+      request.put("call_condition", new JSONString(reportCall.getCondition()));
+      
+      ReportInvestigation reportInvestigation = getReportInvestigation();
+      
+      Date investigationDate = reportInvestigation.getDate();
+      
+      request.put("investigator_support", new JSONString(reportInvestigation.getInvestigatorSupport()));    
+      request.put("investigation_date_minute", new JSONString(minuteFormater.format(investigationDate)));      
+      request.put("investigation_date_hour", new JSONString(hourFormater.format(investigationDate)));      
+      request.put("investigation_date_dayofmonth", new JSONString(dayFormater.format(investigationDate)));      
+      request.put("investigation_date_month", new JSONString(monthFormater.format(investigationDate)));      
+      request.put("investigation_date_year", new JSONString(yearFormater.format(investigationDate)));
+      request.put("investigation_lat_lon_location", new JSONString(reportInvestigation.getLatLonLocation()));
+      request.put("investigation_physical_location", new JSONString(reportInvestigation.getPhysicalLocation()));
+      request.put("investigation_species", new JSONString(reportInvestigation.getSpecies()));
+      request.put("animal_not_found", JSONBoolean.getInstance(reportInvestigation.isAnimalNotFound()));
+      request.put("investigation_condition", new JSONString(reportInvestigation.getCondition()));
+      request.put("tags", new JSONString(reportInvestigation.getTags()));
+      request.put("disposition", new JSONString(reportInvestigation.getDisposition()));
+      request.put("seal_pickup", new JSONString(reportInvestigation.getSealPickup()));
+      request.put("sex", new JSONString(reportInvestigation.getSex()));
+      request.put("weight", new JSONNumber(reportInvestigation.getWeight()));
+      request.put("straight_length", new JSONNumber(reportInvestigation.getStraightLength()));
+      request.put("contour_length", new JSONNumber(reportInvestigation.getContourLength()));
+      request.put("girth", new JSONNumber(reportInvestigation.getGirth()));
+      request.put("investigation_comments", new JSONString(reportInvestigation.getComments()));
+      request.put("is_photo_taken", JSONBoolean.getInstance(isPhotoTaken));
+      
+      JSONArray jsonArray = new JSONArray();
+      
+      List<Attachment> attachments = attachmentList.getAttachments();
+      
+      for(int index = 0; index < attachments.size(); index++)
+      {
+         Attachment attachment = attachments.get(index);
+         
+         JSONValue attachmentJson = attachment.getJson();
+
+         jsonArray.set(index, attachmentJson);
+      }
+      
+      request.put("attachments", jsonArray);
+      
+      return request;
+   }
+   
+   public boolean getIsPhotoTaken()
+   {
+      return isPhotoTaken;
+   }
+
+   public void setIsPhotoTaken(boolean isPhotoTaken)
+   {
+      this.isPhotoTaken = isPhotoTaken;
+   }
+
+   public Volunteer getVolunteer()
+   {
+      return volunteer;
+   }
+
+   public AttachmentList getAttachments()
+   {
+      return attachmentList;
+   }
+
+   public void setAttachments(AttachmentList attachmentList)
+   {
+      this.attachmentList = attachmentList;
+   }
+
+   public void setVolunteer(Volunteer volunteer)
+   {
+      this.volunteer = volunteer;
+   }
+   
+   public ReportCall getReportCall()
+   {
+      return reportCall;
+   }
+
+   public void setReportCall(ReportCall reportCall)
+   {
+      this.reportCall = reportCall;
+   }
+
+   public void setId(int id)
+   {
+      this.id = id;
+   }
+   
+   public int getId()
+   {
+      return id;
+   }
+
+   public ReportInvestigation getReportInvestigation()
+   {
+      return reportInvestigation;
+   }
+
+   public void setReportInvestigation(ReportInvestigation reportInvestigation)
+   {
+      this.reportInvestigation = reportInvestigation;
+   }
+}

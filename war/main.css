@@ -1,0 +1,293 @@
+/** Add css rules here for your application. */
+
+#main {
+	width: 100%;
+	height: 100%;
+	vertical-align: top;
+}
+#title {
+	border-bottom-style: solid;
+	border-bottom-width: 5px;
+	border-bottom-color: #000;
+}
+
+.searchControl {
+	background: #eceff5;
+	margin-left: auto;
+    margin-right: auto;
+	margin-bottom: 5px;
+	padding: 3px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #AAAAAA;
+	font-weight: bolder;
+}
+
+.timedMessage {
+	background: #eceff5;
+	color: #039;
+}
+
+.blogTitle {
+	background: #eceff5;
+	font-size: large;
+	font-weight: bolder;
+	margin-bottom: 2px;
+	margin-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 100%;
+}
+
+.blogMessagePanel {
+  	color: #666666;
+  	padding-top: 3px;
+	padding-bottom: 15px;
+	width: 98%;
+}
+
+.blogMessage {
+  	color: #666666;
+  	padding-top: 3px;
+	padding-bottom: 15px;
+	width: 100%;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #666666;
+}
+
+.blog {
+	  width: 80%;
+}
+
+#footer {
+	border-top-style: solid;
+	border-top-width: 5px;
+	border-top-color: #000;
+}
+
+.messageMessage {
+	color: white;	
+}
+
+.mmsntooltip {
+	background-color: #eceff5;
+	padding: 3px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #039;
+}
+.toolbar {
+	width: 100%;
+}
+
+.navigationButton {
+	padding: 2px;
+}
+
+#mainTable {
+	width: 100%;
+	height: 100%;
+}
+
+.report {	
+	width: 100%;
+	height: 100%;
+}
+
+.treepanel {	
+	width: 100%;
+	height: 100%;
+}
+
+.printPage {
+	font-weight: bold;
+	padding-left: 10px;	
+	border-style: solid;
+	border-width: 5px;
+	border-color: #F00;
+}
+
+.titlepanel {
+	width: 100%;
+}
+
+.viewpanel {
+	width: 100%;
+	height: 100%;
+}
+
+.toolbarbutton
+{
+  	margin: 5px;	
+}
+
+.pageTitle {
+	font-size: large;
+	font-weight: bolder;
+}
+
+.saveLabel {
+	color: green;
+	font-size: medium;
+	font-weight: bolder;
+}
+
+.editLabel {
+	color: red;
+	font-size: medium;
+	font-weight: bolder;
+}
+
+.volunteerAddHoursCalendar {	
+	width: 50%;
+	height: 50%;
+	border: ridge;
+}
+
+.volunteerAddHoursCalendarMonth {
+	font-size: x-large;
+  	text-align: center;
+  	font-family: sans-serif;
+}
+
+.volunteerAddHoursCalendarHeader {	
+	width: 100%;
+	height: 100%;
+	background: #0FF;
+}
+
+.calendarPanel {	
+	width: 100%;
+}
+
+.mmsnlabel {
+	font-size: large;
+  	text-align: center;
+  	font-family: sans-serif;
+  	padding: 2px;
+}
+
+.attachmentItem {
+  	font-family: sans-serif;
+  	padding: 5px;
+}
+
+.viewpanelItem {	
+	width: 100%;
+
+}
+
+.loginPanelOuter {	
+	width: 100%;
+	height: 100%;
+}
+
+.loginPanelInner {
+	width: 300px;
+	height: 200px;
+	background-color: #AAF;
+}
+
+.buttonSpacing {
+	padding: 2px;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.deleteConfimationPanel {	
+	width: 8cm;
+	height: 3cm;
+	background-color: #FFFF00;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #000;
+}
+
+.viewpanelFolder {	
+	width: 350px;
+	height: 200px;
+	background-color: #AAF;
+	vertical-align: middle;
+}
+
+.viewpanelFolder a {	
+	text-decoration: none;
+	font-size: large;
+}
+
+body {
+  padding: 10px;
+  text-align: center;
+  font-size:small;
+}
+
+.volunteerNameControl {
+	padding-right: 10px;
+	cursor: pointer;
+}
+
+.sortableTableHeader {
+	background: #eceff5;
+	color: #039;
+	font-weight: bolder;
+  	text-align: center;
+  	cursor: pointer;
+}
+
+.tableHeader {
+	background: #eceff5;
+	color: #039;
+	font-weight: bolder;
+  	text-align: center;
+}
+
+.alternate {
+  background-color: #ddd;
+}
+
+.tableCenterColumn {
+  text-align: center;
+}
+
+.tableNumericColumn {
+  text-align: center;
+}
+
+.HoursEnteredCell {
+	text-align: center;
+	border: solid;
+	border-color: #0FF;
+	width: 100%;
+	height: 100%;
+}
+
+.calendarWeekDayHeaderCell {
+	text-align: center;
+	width: 5em;
+	background: #0FF;
+}
+
+.calendarCell {
+	text-align: center;
+	border: solid;
+	border-color: #039;
+	width: 5em;
+	height: 5em;
+  	cursor: pointer;
+}
+
+.buttonColumn {
+  text-align: center;
+  width:3em;
+  cursor: pointer;
+}
+
+/* stock list flex table */
+.table {
+  border: 1px solid silver;
+  padding: 2px;
+  margin-bottom:1px;
+  color: #666666;
+  width: 98%;
+}
