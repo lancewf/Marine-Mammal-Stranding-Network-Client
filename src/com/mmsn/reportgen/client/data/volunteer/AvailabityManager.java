@@ -28,8 +28,8 @@ public class AvailabityManager
          {
             isAvailableNow = false;
          }
-         else if(availablity.getSundayFromHour() >= hours &&  
-               availablity.getSundayToHour() <= hours)
+         else if(hours >= availablity.getSundayFromHour()  &&  
+        		 hours <= availablity.getSundayToHour() )
          {
             isAvailableNow = true;
          }
@@ -44,8 +44,8 @@ public class AvailabityManager
          {
             isAvailableNow = false;
          }
-         else if(availablity.getMondayFromHour() >= hours &&  
-               availablity.getMondayToHour() <= hours)
+         else if(hours >= availablity.getMondayFromHour() &&  
+        		 hours <= availablity.getMondayToHour())
          {
             isAvailableNow = true;
          }
@@ -60,8 +60,8 @@ public class AvailabityManager
          {
             isAvailableNow = false;
          }
-         else if(availablity.getTuesdayFromHour() >= hours &&  
-               availablity.getTuesdayToHour() <= hours)
+         else if(hours >= availablity.getTuesdayFromHour() &&  
+        		 hours <= availablity.getTuesdayToHour())
          {
             isAvailableNow = true;
          }
@@ -76,8 +76,8 @@ public class AvailabityManager
          {
             isAvailableNow = false;
          }
-         else if(availablity.getWednesdayFromHour() >= hours &&  
-               availablity.getWednesdayToHour() <= hours)
+         else if(hours >= availablity.getWednesdayFromHour()  &&  
+        		 hours <= availablity.getWednesdayToHour() )
          {
             isAvailableNow = true;
          }
@@ -92,8 +92,8 @@ public class AvailabityManager
          {
             isAvailableNow = false;
          }
-         else if(availablity.getThursdayFromHour() >= hours &&  
-               availablity.getThursdayToHour() <= hours)
+         else if(hours >= availablity.getThursdayFromHour() &&  
+        		 hours <= availablity.getThursdayToHour() )
          {
             isAvailableNow = true;
          }
@@ -108,8 +108,8 @@ public class AvailabityManager
          {
             isAvailableNow = false;
          }
-         else if(availablity.getFridayFromHour() >= hours &&  
-               availablity.getFridayToHour() <= hours)
+         else if(hours >= availablity.getFridayFromHour() &&  
+        		 hours <= availablity.getFridayToHour() )
          {
             isAvailableNow = true;
          }
@@ -124,8 +124,8 @@ public class AvailabityManager
          {
             isAvailableNow = false;
          }
-         else if(availablity.getSaturdayFromHour() >= hours &&  
-               availablity.getSaturdayToHour() <= hours)
+         else if(hours >= availablity.getSaturdayFromHour()  &&  
+        		 hours <= availablity.getSaturdayToHour())
          {
             isAvailableNow = true;
          }

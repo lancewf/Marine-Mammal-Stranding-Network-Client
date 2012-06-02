@@ -21,7 +21,7 @@ public class MainPanelControl extends VerticalPanel
       
       Widget splitPanel = initialize(widgetFactory);
       
-      setHeight(Window.getClientHeight()*.8 + "px");
+      setHeight(Window.getClientHeight() + "px");
       
       add(splitPanel);
    }

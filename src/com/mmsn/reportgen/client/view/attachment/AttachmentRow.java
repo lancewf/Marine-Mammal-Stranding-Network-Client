@@ -6,7 +6,9 @@ import com.finfrock.client.DataChangeListener;
 import com.finfrock.client.Row;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Image;
 import com.mmsn.reportgen.client.WidgetFactory;
 import com.mmsn.reportgen.client.connection.ServiceLocations;
 import com.mmsn.reportgen.client.data.attachment.Attachment;
@@ -21,6 +23,7 @@ public class AttachmentRow extends Row
    // --------------------------------------------------------------------------
    
    private static String ATTACHMENT_FOLDER = "uploads";
+   public static final int PREVIEW_INDEX = 4;
    public static final int DELETE_INDEX = 3;
    public static final int COMMENTS_INDEX = 2;
    public static final int NAME_INDEX = 1;
@@ -32,6 +35,7 @@ public class AttachmentRow extends Row
    private ServiceLocations serviceLocations;
    private Anchor removeAnchor;
    private Attachment attachment;
+   private Image image;
    private AttachmentManager attachmentManager;
    private CommentsReadOnlyControl commentsReadOnlyControl;
    private WidgetFactory widgetFactory;
@@ -51,6 +55,7 @@ public class AttachmentRow extends Row
       
       addColumn(createNameColumn());
       addColumn(createCommentsColumn());
+      addColumn(createPreviewColumn());
       addColumn(createDeleteColumn());
    }
 
@@ -68,6 +73,23 @@ public class AttachmentRow extends Row
    // Private Members
    // --------------------------------------------------------------------------
 
+   private Column createPreviewColumn(){
+	   CommonColumn column = new CommonColumn();
+	   
+	   image = new Image();
+	   
+	   image.setWidth("240px");
+	   image.setHeight("160px");
+	   String encodedFile = URL.encodeQueryString(attachment.getFileName());
+	   image.setUrl(serviceLocations.getBaseUrl() + ATTACHMENT_FOLDER + 
+  	         "/" + encodedFile);
+	   
+	   column.setValue(image);
+	   column.setIndex(PREVIEW_INDEX);
+	   column.setValueType(Column.WIDGET_COLUMN_TYPE);
+	   return column;
+   }
+   
    private Column createDeleteColumn()
    {
       CommonColumn column = new CommonColumn();
@@ -142,9 +164,11 @@ public class AttachmentRow extends Row
    {
       CommonColumn column = new CommonColumn();
       
+      String encodedFile = URL.encodeQueryString(attachment.getFileName());
+      
       Anchor anchor = new Anchor(attachment.getFileName(), 
-         serviceLocations.getBaseUrl() + ATTACHMENT_FOLDER + 
-         "/" + attachment.getFileName(), "_blank");
+    		  serviceLocations.getBaseUrl() + ATTACHMENT_FOLDER + 
+    	         "/" + encodedFile, "_blank");
       
       column.setValue(anchor);
       column.setIndex(NAME_INDEX);

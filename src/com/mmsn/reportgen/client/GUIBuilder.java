@@ -2,6 +2,7 @@ package com.mmsn.reportgen.client;
 
 import com.finfrock.client.DataChangeListener;
 import com.finfrock.client.Returnable;
+import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.mmsn.reportgen.client.connection.DataBuilder;
@@ -102,7 +103,7 @@ public class GUIBuilder
    private ServiceLocations getServiceLocations()
    {
       return new ReleaseServiceLocations();
-      //return new TestServiceLocations();
+//      return new TestServiceLocations();
    }
 
    private LoginPanel createLoginPanel()
