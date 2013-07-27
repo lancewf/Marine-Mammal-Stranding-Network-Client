@@ -1,13 +1,9 @@
 package com.mmsn.reportgen.client.view.attachment;
 
-import com.extjs.gxt.ui.client.event.Events;
-import com.extjs.gxt.ui.client.event.FieldEvent;
-import com.extjs.gxt.ui.client.event.Listener;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.FocusEvent;
 import com.google.gwt.event.dom.client.FocusHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -45,7 +41,11 @@ public class CommentsReadOnlyControl extends VerticalPanel
   			}
   		}});
       
-      readOnlyText = new Label(attachment.getComments());
+      String comments = "bad image. please delete and try again.";
+      if(attachment.getComments() != null){
+    	  comments = attachment.getComments();
+      }
+      readOnlyText = new Label(comments);
       
       add(writableText);
       add(readOnlyText);
@@ -93,7 +93,7 @@ public class CommentsReadOnlyControl extends VerticalPanel
       
       text.setWidth("400px");
       
-      if(attachment.getComments() != null &&
+      if(attachment.getComments() == null ||
     		  attachment.getComments().length() == 0)
       {
     	  text.setText(COMMENTS_WARNING);

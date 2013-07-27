@@ -336,6 +336,8 @@ public class ReportInvestigationControl extends VerticalPanel
    public void setAnimalNotFound(boolean animalNotFound)
    {
       animalNotFoundField.setValue(animalNotFound);
+      
+      isAnimalCheckBoxChanged(animalNotFound);
    }
 
    public String getComments()

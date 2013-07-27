@@ -115,31 +115,42 @@ public class ReportBuilder
    // Private Members
    // --------------------------------------------------------------------------
 
-   private List<Attachment> getAttachments(ReportData reportData)
-   {
-      JsArray<AttachmentData> attachmentDatas = 
-         asArrayOfAttachmentData(reportData.getAttachments());
-      
-      List<Attachment> attachments = new ArrayList<Attachment>();
-      
-      for(int index = 0; index < attachmentDatas.length(); index++)
-      {
-         AttachmentData attachmentData = attachmentDatas.get(index);
+	private List<Attachment> getAttachments(ReportData reportData) {
+		JavaScriptObject javaScriptObject = null;
 
-         Attachment attachment = new Attachment();
-         
-         attachment.setId(attachmentData.getId());
-         attachment.setFileName(attachmentData.getFileName());
-         attachment.setComments(attachmentData.getComments());
-         
-         attachments.add(attachment);
-      }
-      return attachments;
-   }
+		try {
+			javaScriptObject = reportData.getAttachments();
+		} catch (Exception ex) {
+			javaScriptObject = null;
+		}
+
+		List<Attachment> attachments = new ArrayList<Attachment>();
+
+		if (javaScriptObject != null) {
+			JsArray<AttachmentData> attachmentDatas = asArrayOfAttachmentData(javaScriptObject);
+			for (int index = 0; index < attachmentDatas.length(); index++) {
+				AttachmentData attachmentData = attachmentDatas.get(index);
+				
+				Attachment attachment = new Attachment();
+				if(attachmentData.getFileName() != null && attachmentData.getComments() != null){
+					attachment.setFileName(attachmentData.getFileName());
+					attachment.setComments(attachmentData.getComments());
+				}
+				else{
+					attachment.setFileName("Bad_Image_Please_delete");
+					attachment.setComments("Bad Image Please delete");
+				}
+				attachment.setId(attachmentData.getId());
+
+				attachments.add(attachment);
+			}
+		}
+		return attachments;
+	}
    
    private final native JsArray<AttachmentData> asArrayOfAttachmentData(
       JavaScriptObject json) 
    /*-{
-      return eval(json);
-   }-*/;
+	return eval(json);
+}-*/;
 }

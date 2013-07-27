@@ -39,5 +39,4 @@ public class ReportModifiedSender extends Sender
    {
       return "json=" + report.getJson().toString();
    }
-
 }

@@ -255,6 +255,12 @@ public class VolunteerHoursReportPanel extends VerticalPanel implements Panel
       yearBox.addItem("2010", "2010");
       yearBox.addItem("2011", "2011");
       yearBox.addItem("2012", "2012");
+      yearBox.addItem("2013", "2013");
+      yearBox.addItem("2014", "2014");
+      yearBox.addItem("2015", "2015");
+      yearBox.addItem("2016", "2016");
+      yearBox.addItem("2017", "2017");
+      yearBox.addItem("2018", "2018");
       
       DateWrapper currentDateDisplayed = new DateWrapper(new Date());
       

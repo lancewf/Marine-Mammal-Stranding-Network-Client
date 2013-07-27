@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.finfrock.client.DataChangeListener;
 import com.finfrock.client.Returnable;
+import com.google.gwt.user.client.Window;
 import com.mmsn.reportgen.client.connection.ServiceLocations;
 import com.mmsn.reportgen.client.connection.attachment.AttachmentAddedSender;
 import com.mmsn.reportgen.client.connection.attachment.AttachmentDeleter;
@@ -34,18 +35,36 @@ public class ReportManager implements ReportManagerable
    // Constructor
    // --------------------------------------------------------------------------
    
-   public ReportManager(List<Report> reports, 
-                        ReportModifiedSender reportModifiedSender, 
-                        ReportAddedSender reportAddedSender, 
-                        ReportDeleter reportDeleter, 
-                        ServiceLocations serviceLocations)
-   {
-      this.serviceLocations = serviceLocations;
-      this.reports = reports;
-      this.reportAddedSender = reportAddedSender;
-      this.reportDeleter = reportDeleter;
-      this.reportModifiedSender = reportModifiedSender;
-   }
+	public ReportManager(List<Report> reports,
+			ReportModifiedSender reportModifiedSender,
+			ReportAddedSender reportAddedSender, ReportDeleter reportDeleter,
+			ServiceLocations serviceLocations) {
+		this.serviceLocations = serviceLocations;
+		this.reports = reports;
+		this.reportAddedSender = reportAddedSender;
+		this.reportDeleter = reportDeleter;
+		this.reportModifiedSender = reportModifiedSender;
+
+		reportModifiedSender.addReturnableListener(new Returnable<Boolean>() {
+			@Override
+			public void returned(Boolean reponse) {
+				if(reponse){
+					Window.alert("Report Updated Success");
+				} else{
+					Window.alert("Report Update Failed. Please Edit and Save again");
+				}
+			}
+		});
+		
+        reportAddedSender.addFinishSavingListener(new Returnable<Report>()
+        {
+           @Override
+           public void returned(Report report)
+           {
+              saveAttachments(report);
+           }
+        });
+	}
    
    // --------------------------------------------------------------------------
    // Public Members
@@ -101,15 +120,6 @@ public class ReportManager implements ReportManagerable
       if(report.getId() < 0)
       {
          reports.add(report);
-         
-         reportAddedSender.addFinishSavingListener(new Returnable<Report>()
-         {
-            @Override
-            public void returned(Report report)
-            {
-               saveAttachments(report);
-            }
-         });
          
          reportAddedSender.setReport(report);
          

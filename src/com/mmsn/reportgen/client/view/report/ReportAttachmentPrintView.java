@@ -33,13 +33,21 @@ public class ReportAttachmentPrintView extends VerticalPanel
       int index = 1;
       for(Attachment attachment : attachmentList.getAttachments())
       {
-         Label name = new Label(attachment.getFileName());
+    	 String filename = "not found";
+    	 if(attachment.getFileName() != null){
+    		 filename = attachment.getFileName();
+    	 }
+         Label name = new Label(filename);
          name.addStyleName("printLabel");
          flexTable.setWidget(index,0, name);
-
-         Label comments = new Label(attachment.getComments());
+         
+         String comments = "bad attachment";
+         if(attachment.getComments() != null){
+        	 comments = attachment.getComments();
+         }
+         Label commentsLabel = new Label(comments);
          name.addStyleName("printField");
-         flexTable.setWidget(index,1, comments);
+         flexTable.setWidget(index,1, commentsLabel);
          
          index++;
       }

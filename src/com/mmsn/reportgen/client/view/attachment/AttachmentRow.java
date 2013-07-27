@@ -80,7 +80,10 @@ public class AttachmentRow extends Row
 	   
 	   image.setWidth("240px");
 	   image.setHeight("160px");
-	   String encodedFile = URL.encodeQueryString(attachment.getFileName());
+	   String encodedFile = "File not found";
+	   if(attachment.getFileName() != null){
+		   encodedFile = URL.encodeQueryString(attachment.getFileName());
+	   }
 	   image.setUrl(serviceLocations.getBaseUrl() + ATTACHMENT_FOLDER + 
   	         "/" + encodedFile);
 	   
@@ -121,8 +124,13 @@ public class AttachmentRow extends Row
       final DeleteConfirmationPanel deleteConfirmationPanel = 
          new DeleteConfirmationPanel();
       
+      String filename = "";
+	   if(attachment.getFileName() != null){
+		   filename = URL.encodeQueryString(attachment.getFileName());
+	   }
+	   
       deleteConfirmationPanel.setText("Are you sure you would like to delete '" +
-         attachment.getFileName() + "' Attachment?");
+    		  filename + "' Attachment?");
       
       viewPanel.show(deleteConfirmationPanel);
       
@@ -164,9 +172,12 @@ public class AttachmentRow extends Row
    {
       CommonColumn column = new CommonColumn();
       
-      String encodedFile = URL.encodeQueryString(attachment.getFileName());
+      String encodedFile = "File not found";
+      if(attachment.getFileName() != null){
+    	  encodedFile = URL.encodeQueryString(attachment.getFileName());
+      }
       
-      Anchor anchor = new Anchor(attachment.getFileName(), 
+      Anchor anchor = new Anchor(encodedFile, 
     		  serviceLocations.getBaseUrl() + ATTACHMENT_FOLDER + 
     	         "/" + encodedFile, "_blank");
       

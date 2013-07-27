@@ -51,21 +51,30 @@ public class ReportAddedSender extends SenderAndReceiver
    protected void reponse(String reponse)
    {
       int id = -1;
-      
+      boolean summited = true;
       try
       {
          id = Integer.parseInt(reponse);
       }
       catch(Exception ex)
       {
+    	 summited = false;
          Window.alert("Error parseing report id");
+      }
+      
+      if(id < 0){
+    	 summited = false;
       }
       
       report.setId(id);
       
       returnable.returned(report);
       
-      Window.alert("Report Added");
+      if(summited){
+    	  Window.alert("Report Added");
+      } else{
+    	  Window.alert("Report Failed. Please Edit and Save again");
+      }
    }
 
 }
