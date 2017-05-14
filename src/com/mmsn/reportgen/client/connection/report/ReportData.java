@@ -184,11 +184,6 @@ public class ReportData extends JavaScriptObject
       return this.straight_length;
    }-*/;
    
-   public final native double getContourLength()
-   /*-{
-      return this.contour_length;
-   }-*/;
-   
    public final native double getGirth()
    /*-{
       return this.girth;

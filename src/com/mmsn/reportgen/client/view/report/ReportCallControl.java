@@ -276,7 +276,7 @@ public class ReportCallControl extends VerticalPanel
 
    private void initialize()
    {
-      add(new HTML("<h3>CALL</h3><br />"));
+      add(new HTML("<h3>Initial Report</h3><br />"));
       
       FlexTable flexTable = new FlexTable();
       flexTable.setCellSpacing(10);
@@ -285,11 +285,11 @@ public class ReportCallControl extends VerticalPanel
       int rowIndex = 1;
       
       responderField = new TextField<String>();
-      responderField.setFieldLabel("Responder");
+      responderField.setFieldLabel("Responder(s)");
       responderField.setValue("");
       responderField.setWidth(250);
       
-      flexTable.setText(rowIndex, 0 , "Responder:");
+      flexTable.setText(rowIndex, 0 , "Responder(s):");
       flexTable.setWidget(rowIndex, 1, responderField);
       
       flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
@@ -352,7 +352,7 @@ public class ReportCallControl extends VerticalPanel
       flexTable.setText(rowIndex, 0 , "Species:");
       flexTable.setWidget(rowIndex, 1, speciesField);
       
-      flexTable.setText(rowIndex, 2, "Condition:");
+      flexTable.setText(rowIndex, 2, "Overall Condition:");
       flexTable.setWidget(rowIndex, 3, createConditionComboBox());
       
       rowIndex++;
@@ -367,12 +367,12 @@ public class ReportCallControl extends VerticalPanel
       rowIndex++;
       
       commentsField = new TextArea();
-      commentsField.setFieldLabel("Comments");
+      commentsField.setFieldLabel("General Comments");
       commentsField.setValue("");
       commentsField.setWidth(450);
       commentsField.setHeight(80);
       
-      flexTable.setText(rowIndex,0 , "Comments:");
+      flexTable.setText(rowIndex,0 , "General Comments:");
       flexTable.setWidget(rowIndex,1, commentsField);
       flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
       

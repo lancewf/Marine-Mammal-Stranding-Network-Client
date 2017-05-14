@@ -112,7 +112,6 @@ public class Report
       request.put("sex", new JSONString(reportInvestigation.getSex()));
       request.put("weight", new JSONNumber(reportInvestigation.getWeight()));
       request.put("straight_length", new JSONNumber(reportInvestigation.getStraightLength()));
-      request.put("contour_length", new JSONNumber(reportInvestigation.getContourLength()));
       request.put("girth", new JSONNumber(reportInvestigation.getGirth()));
       request.put("investigation_comments", new JSONString(reportInvestigation.getComments()));
       request.put("is_photo_taken", JSONBoolean.getInstance(isPhotoTaken));

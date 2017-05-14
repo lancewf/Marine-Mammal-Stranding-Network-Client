@@ -92,7 +92,6 @@ public class ReportBuilder
       reportInvestigation.setSex(reportData.getSex());
       reportInvestigation.setWeight(reportData.getWeight());
       reportInvestigation.setStraightLength(reportData.getStraightLength());
-      reportInvestigation.setContourLength(reportData.getContourLength());
       reportInvestigation.setGirth(reportData.getGirth());
       reportInvestigation.setComments(reportData.getInvestigationComments());
       
