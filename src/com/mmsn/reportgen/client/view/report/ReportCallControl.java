@@ -313,6 +313,18 @@ public class ReportCallControl extends VerticalPanel
       
       rowIndex++;
       
+      locationField = new TextField<String>();
+      locationField.setFieldLabel("Location");
+      locationField.setValue("");
+      locationField.setWidth(250);
+      
+      flexTable.setText(rowIndex, 0, "Location:");
+      flexTable.setWidget(rowIndex, 1, locationField);
+      
+      flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
+      
+      rowIndex++;
+
       flexTable.setText(rowIndex, 0, "Call From:");
       flexTable.setWidget(rowIndex, 1, createCallFrom());
       flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
@@ -335,17 +347,6 @@ public class ReportCallControl extends VerticalPanel
       
       rowIndex++;
       
-      locationField = new TextField<String>();
-      locationField.setFieldLabel("Location");
-      locationField.setValue("");
-      locationField.setWidth(250);
-      
-      flexTable.setText(rowIndex, 0, "Location:");
-      flexTable.setWidget(rowIndex, 1, locationField);
-      
-      flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
-      
-      rowIndex++;
       
       speciesField = new SpeciesField();
       

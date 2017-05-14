@@ -12,6 +12,7 @@ import com.mmsn.reportgen.client.data.attachment.AttachmentList;
 import com.mmsn.reportgen.client.data.report.Report;
 import com.mmsn.reportgen.client.data.report.ReportCall;
 import com.mmsn.reportgen.client.data.report.ReportInvestigation;
+import com.mmsn.reportgen.client.data.report.ReportLiveAnimals;
 import com.mmsn.reportgen.client.data.volunteer.Volunteer;
 import com.mmsn.reportgen.client.data.volunteer.VolunteerManagerable;
 
@@ -98,6 +99,37 @@ public class ReportBuilder
       report.setIsPhotoTaken(reportData.getIsPhotoTaken());
       
       report.setReportInvestigation(reportInvestigation);
+     
+      //************************ Live Animals *************************
+      
+      ReportLiveAnimals reportLiveAnimals = new ReportLiveAnimals();
+      
+      reportLiveAnimals.setConSick(reportData.getLiveAnimalsIsConSick());
+      reportLiveAnimals.setConInjured(reportData.getLiveAnimalsIsConInjured());
+      reportLiveAnimals.setConOutOfHabitat(reportData.getLiveAnimalsIsConOutOfHabitat());
+      reportLiveAnimals.setConDeemedReleasable(reportData.getLiveAnimalsIsConDeemedReleasable());
+      reportLiveAnimals.setConAbandoned(reportData.getLiveAnimalsIsConAbandoned());
+      reportLiveAnimals.setConInaccessible(reportData.getLiveAnimalsIsConInaccessible());
+      reportLiveAnimals.setConLocationHazardToAnimal(reportData.getLiveAnimalsIsConLocationHazardToAnimal());
+      reportLiveAnimals.setConLocationHazardToHumans(reportData.getLiveAnimalsIsConLocationHazardToHumans());
+      reportLiveAnimals.setConUnknown(reportData.getLiveAnimalsIsConUnknown());
+      reportLiveAnimals.setConOther(reportData.getLiveAnimalsIsConOther());
+      
+      reportLiveAnimals.setActionLeftAtSite(reportData.getLiveAnimalsIsActionLeftAtSite());
+      reportLiveAnimals.setActionImmediateReleaseAtSite(reportData.getLiveAnimalsIsActionImmediateReleaseAtSite());
+      reportLiveAnimals.setActionRelocated(reportData.getLiveAnimalsIsActionRelocated());
+      reportLiveAnimals.setActionDiedAtSite(reportData.getLiveAnimalsIsActionDiedAtSite());
+      reportLiveAnimals.setActionDiedDuringTransport(reportData.getLiveAnimalsIsActionDiedDuringTransport());
+      reportLiveAnimals.setActionEuthanizedAtSite(reportData.getLiveAnimalsIsActionEuthanizedAtSite());
+      reportLiveAnimals.setActionEuthanizedDuringTransport(reportData.getLiveAnimalsIsActionEuthanizedDuringTransport());
+      reportLiveAnimals.setActionTransferredToRehab(reportData.getLiveAnimalsIsActionTransferredToRehab());
+      reportLiveAnimals.setActionOther(reportData.getLiveAnimalsIsActionOther());
+      reportLiveAnimals.setLocation(reportData.getLiveAnimalsLocation());
+      
+      
+      report.setReportLiveAnimals(reportLiveAnimals);
+ 
+      //************************ Attachments *************************
       
       List<Attachment> attachments = getAttachments(reportData);
       

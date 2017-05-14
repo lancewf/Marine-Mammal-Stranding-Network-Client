@@ -9,6 +9,7 @@ import com.mmsn.reportgen.client.data.attachment.AttachmentList;
 import com.mmsn.reportgen.client.data.report.Report;
 import com.mmsn.reportgen.client.data.report.ReportCall;
 import com.mmsn.reportgen.client.data.report.ReportInvestigation;
+import com.mmsn.reportgen.client.data.report.ReportLiveAnimals;
 import com.mmsn.reportgen.client.data.volunteer.Volunteer;
 import com.mmsn.reportgen.client.view.FormEditControl;
 import com.mmsn.reportgen.client.view.attachment.AttachmentsControl;
@@ -21,6 +22,7 @@ public class ReportControl extends VerticalPanel implements FormEditControl
    
    private ReportCallControl reportCallControl;
    private ReportInvestigationControl reportInvestigationControl;
+   private ReportLiveAnimalsControl reportLiveAnimalsControl;
    private Label editLabel1;
    private Label editLabel2;
    private AttachmentsControl photoControl;
@@ -49,7 +51,8 @@ public class ReportControl extends VerticalPanel implements FormEditControl
    {
       reportCallControl.setReadOnly(readOnly);
       reportInvestigationControl.setReadOnly(readOnly);
-      
+      reportLiveAnimalsControl.setReadOnly(readOnly);
+
       if(readOnly)
       {
          editLabel1.setVisible(true);
@@ -72,6 +75,11 @@ public class ReportControl extends VerticalPanel implements FormEditControl
    {
       reportCallControl.setReportCall(reportCall);
    }
+
+   public void setReportLiveAnimals(ReportLiveAnimals reportLiveAnimals)
+   {
+      reportLiveAnimalsControl.setReportLiveAnimals(reportLiveAnimals);
+   }
    
    public void setReportInvestigation(ReportInvestigation reportInvestigation)
    {
@@ -88,6 +96,11 @@ public class ReportControl extends VerticalPanel implements FormEditControl
       return reportCallControl.getReportCall();
    }
    
+   public ReportLiveAnimals getReportLiveAnimals()
+   {
+      return reportLiveAnimalsControl.getReportLiveAnimals();
+   }
+
    public ReportInvestigation getReportInvestigation()
    {
       return reportInvestigationControl.getReportInvestigation();
@@ -96,7 +109,10 @@ public class ReportControl extends VerticalPanel implements FormEditControl
    public void setReport(Report report)
    {
       setReportCall(report.getReportCall());
+      
       setReportInvestigation(report.getReportInvestigation());
+      
+      setReportLiveAnimals(report.getReportLiveAnimals());
       
       photoControl.setIsPhotosTaken(report.getIsPhotoTaken());
       
@@ -127,7 +143,8 @@ public class ReportControl extends VerticalPanel implements FormEditControl
       reportCallControl.fillReportCall(report.getReportCall());
       reportInvestigationControl.fillReportInvestigation(
          report.getReportInvestigation());
-      
+      reportLiveAnimalsControl.fillReportLiveAnimals(report.getReportLiveAnimals());
+
       report.setIsPhotoTaken(photoControl.getIsPhotosTaken());      
       report.setAttachments(photoControl.getAttachments());
    }
@@ -174,6 +191,9 @@ public class ReportControl extends VerticalPanel implements FormEditControl
       
       reportInvestigationControl = 
          new ReportInvestigationControl();
+
+      reportLiveAnimalsControl = 
+         new ReportLiveAnimalsControl();
       
       photoControl = new AttachmentsControl(serviceLocations, widgetFactory);
       
@@ -187,6 +207,14 @@ public class ReportControl extends VerticalPanel implements FormEditControl
       
       add(reportInvestigationControl);
       
+      setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+      add(editLabel2);
+      add(saveLabel2);
+      
+      setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+      
+      add(reportLiveAnimalsControl);
+
       add(photoControl);
    }
 }

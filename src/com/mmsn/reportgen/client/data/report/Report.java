@@ -25,6 +25,8 @@ public class Report
    private Volunteer volunteer;
    
    private ReportCall reportCall;
+
+   private ReportLiveAnimals reportLiveAnimals;
    
    private boolean isPhotoTaken;
    
@@ -71,7 +73,7 @@ public class Report
       }
       
       ReportCall reportCall = getReportCall();
-      
+
       request.put("responder", new JSONString(reportCall.getResponder()));
       
       Date callDate = reportCall.getDate();
@@ -115,6 +117,36 @@ public class Report
       request.put("girth", new JSONNumber(reportInvestigation.getGirth()));
       request.put("investigation_comments", new JSONString(reportInvestigation.getComments()));
       request.put("is_photo_taken", JSONBoolean.getInstance(isPhotoTaken));
+      
+      //************************ Live Animals *************************
+      
+      ReportLiveAnimals reportLiveAnimals = getReportLiveAnimals();
+
+      request.put("live_animals_is_con_sick", JSONBoolean.getInstance(reportLiveAnimals.isConSick()));
+      request.put("live_animals_is_con_injured", JSONBoolean.getInstance(reportLiveAnimals.isConInjured()));
+      request.put("live_animals_is_con_out_of_habitat", JSONBoolean.getInstance(reportLiveAnimals.isConOutOfHabitat()));
+      request.put("live_animals_is_con_deemed_releasable", JSONBoolean.getInstance(reportLiveAnimals.isConDeemedReleasable()));
+      request.put("live_animals_is_con_abandoned", JSONBoolean.getInstance(reportLiveAnimals.isConAbandoned()));
+      
+      request.put("live_animals_is_con_inaccessible", JSONBoolean.getInstance(reportLiveAnimals.isConInaccessible()));
+      request.put("live_animals_is_con_location_hazard_to_animal", JSONBoolean.getInstance(reportLiveAnimals.isConLocationHazardToAnimal()));
+      request.put("live_animals_is_con_location_hazard_to_humans", JSONBoolean.getInstance(reportLiveAnimals.isConLocationHazardToHumans()));
+      request.put("live_animals_is_con_unknown", JSONBoolean.getInstance(reportLiveAnimals.isConUnknown()));
+      request.put("live_animals_is_con_other", JSONBoolean.getInstance(reportLiveAnimals.isConOther()));
+      
+      request.put("live_animals_is_action_left_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionLeftAtSite()));
+      request.put("live_animals_is_action_immediate_release_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionImmediateReleaseAtSite()));
+      request.put("live_animals_is_action_relocated", JSONBoolean.getInstance(reportLiveAnimals.isActionRelocated()));
+      request.put("live_animals_is_action_died_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionDiedAtSite()));
+      request.put("live_animals_is_action_died_during_transport", JSONBoolean.getInstance(reportLiveAnimals.isActionDiedDuringTransport()));
+      
+      request.put("live_animals_is_action_euthanized_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionEuthanizedAtSite()));
+      request.put("live_animals_is_action_euthanized_during_transport", JSONBoolean.getInstance(reportLiveAnimals.isActionEuthanizedDuringTransport()));
+      request.put("live_animals_is_action_transferred_to_rehab", JSONBoolean.getInstance(reportLiveAnimals.isActionTransferredToRehab()));
+      request.put("live_animals_is_action_other", JSONBoolean.getInstance(reportLiveAnimals.isActionOther()));
+      request.put("live_animals_location", new JSONString(reportLiveAnimals.getLocation()));
+
+      //************************ Attachments *************************
       
       JSONArray jsonArray = new JSONArray();
       
@@ -192,5 +224,15 @@ public class Report
    public void setReportInvestigation(ReportInvestigation reportInvestigation)
    {
       this.reportInvestigation = reportInvestigation;
+   }
+
+   public ReportLiveAnimals getReportLiveAnimals()
+   {
+      return reportLiveAnimals;
+   }
+
+   public void setReportLiveAnimals(ReportLiveAnimals reportLiveAnimals)
+   {
+      this.reportLiveAnimals = reportLiveAnimals;
    }
 }

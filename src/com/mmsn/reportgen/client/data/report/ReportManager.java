@@ -107,6 +107,10 @@ public class ReportManager implements ReportManagerable
       
       report.setReportInvestigation(reportInvestigation);
       
+      ReportLiveAnimals reportLiveAnimals = new ReportLiveAnimals();
+      
+      report.setReportLiveAnimals(reportLiveAnimals);
+      
       report.setId(-1);
       
       return report;
