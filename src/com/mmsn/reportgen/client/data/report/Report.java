@@ -122,29 +122,29 @@ public class Report
       
       ReportLiveAnimals reportLiveAnimals = getReportLiveAnimals();
 
-      request.put("live_animals_is_con_sick", JSONBoolean.getInstance(reportLiveAnimals.isConSick()));
-      request.put("live_animals_is_con_injured", JSONBoolean.getInstance(reportLiveAnimals.isConInjured()));
-      request.put("live_animals_is_con_out_of_habitat", JSONBoolean.getInstance(reportLiveAnimals.isConOutOfHabitat()));
-      request.put("live_animals_is_con_deemed_releasable", JSONBoolean.getInstance(reportLiveAnimals.isConDeemedReleasable()));
-      request.put("live_animals_is_con_abandoned", JSONBoolean.getInstance(reportLiveAnimals.isConAbandoned()));
+      request.put("is_con_sick", JSONBoolean.getInstance(reportLiveAnimals.isConSick()));
+      request.put("is_con_injured", JSONBoolean.getInstance(reportLiveAnimals.isConInjured()));
+      request.put("is_con_out_of_habitat", JSONBoolean.getInstance(reportLiveAnimals.isConOutOfHabitat()));
+      request.put("is_con_deemed_releasable", JSONBoolean.getInstance(reportLiveAnimals.isConDeemedReleasable()));
+      request.put("is_con_abandoned", JSONBoolean.getInstance(reportLiveAnimals.isConAbandoned()));
       
-      request.put("live_animals_is_con_inaccessible", JSONBoolean.getInstance(reportLiveAnimals.isConInaccessible()));
-      request.put("live_animals_is_con_location_hazard_to_animal", JSONBoolean.getInstance(reportLiveAnimals.isConLocationHazardToAnimal()));
-      request.put("live_animals_is_con_location_hazard_to_humans", JSONBoolean.getInstance(reportLiveAnimals.isConLocationHazardToHumans()));
-      request.put("live_animals_is_con_unknown", JSONBoolean.getInstance(reportLiveAnimals.isConUnknown()));
-      request.put("live_animals_is_con_other", JSONBoolean.getInstance(reportLiveAnimals.isConOther()));
+      request.put("is_con_inaccessible", JSONBoolean.getInstance(reportLiveAnimals.isConInaccessible()));
+      request.put("is_con_location_hazard_to_animal", JSONBoolean.getInstance(reportLiveAnimals.isConLocationHazardToAnimal()));
+      request.put("is_con_location_hazard_to_humans", JSONBoolean.getInstance(reportLiveAnimals.isConLocationHazardToHumans()));
+      request.put("is_con_unknown", JSONBoolean.getInstance(reportLiveAnimals.isConUnknown()));
+      request.put("is_con_other", JSONBoolean.getInstance(reportLiveAnimals.isConOther()));
       
-      request.put("live_animals_is_action_left_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionLeftAtSite()));
-      request.put("live_animals_is_action_immediate_release_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionImmediateReleaseAtSite()));
-      request.put("live_animals_is_action_relocated", JSONBoolean.getInstance(reportLiveAnimals.isActionRelocated()));
-      request.put("live_animals_is_action_died_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionDiedAtSite()));
-      request.put("live_animals_is_action_died_during_transport", JSONBoolean.getInstance(reportLiveAnimals.isActionDiedDuringTransport()));
+      request.put("is_action_left_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionLeftAtSite()));
+      request.put("is_action_immediate_release_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionImmediateReleaseAtSite()));
+      request.put("is_action_relocated", JSONBoolean.getInstance(reportLiveAnimals.isActionRelocated()));
+      request.put("is_action_died_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionDiedAtSite()));
+      request.put("is_action_died_during_transport", JSONBoolean.getInstance(reportLiveAnimals.isActionDiedDuringTransport()));
       
-      request.put("live_animals_is_action_euthanized_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionEuthanizedAtSite()));
-      request.put("live_animals_is_action_euthanized_during_transport", JSONBoolean.getInstance(reportLiveAnimals.isActionEuthanizedDuringTransport()));
-      request.put("live_animals_is_action_transferred_to_rehab", JSONBoolean.getInstance(reportLiveAnimals.isActionTransferredToRehab()));
-      request.put("live_animals_is_action_other", JSONBoolean.getInstance(reportLiveAnimals.isActionOther()));
-      request.put("live_animals_location", new JSONString(reportLiveAnimals.getLocation()));
+      request.put("is_action_euthanized_at_site", JSONBoolean.getInstance(reportLiveAnimals.isActionEuthanizedAtSite()));
+      request.put("is_action_euthanized_during_transport", JSONBoolean.getInstance(reportLiveAnimals.isActionEuthanizedDuringTransport()));
+      request.put("is_action_transferred_to_rehab", JSONBoolean.getInstance(reportLiveAnimals.isActionTransferredToRehab()));
+      request.put("is_action_other", JSONBoolean.getInstance(reportLiveAnimals.isActionOther()));
+      request.put("location", new JSONString(reportLiveAnimals.getLocation()));
 
       //************************ Attachments *************************
       
