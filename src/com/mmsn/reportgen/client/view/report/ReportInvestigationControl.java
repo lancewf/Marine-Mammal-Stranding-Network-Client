@@ -439,7 +439,7 @@ public class ReportInvestigationControl extends VerticalPanel
       flexTable.setText(rowIndex, 0 , "Species:");
       flexTable.setWidget(rowIndex, 1, speciesField);
       
-      flexTable.setText(rowIndex, 2, "Postmortem Condition:");
+      flexTable.setText(rowIndex, 2, "Overall Condition:");
       flexTable.setWidget(rowIndex, 3, createConditionControl());
       
       rowIndex++;
@@ -637,7 +637,7 @@ public class ReportInvestigationControl extends VerticalPanel
       listStore.add(new StringModel("Dead Ugly"));
       
       conditionComboBox = new ComboBox<StringModel>();
-      conditionComboBox.setFieldLabel("Condition");
+      conditionComboBox.setFieldLabel("Overall Condition");
       conditionComboBox.setDisplayField("name");
       conditionComboBox.setTriggerAction(TriggerAction.ALL);
       conditionComboBox.setStore(listStore);

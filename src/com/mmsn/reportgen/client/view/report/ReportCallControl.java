@@ -304,21 +304,21 @@ public class ReportCallControl extends VerticalPanel
       rowIndex++;
       
       timeField = new TimeField();
-      timeField.setFieldLabel("Time");
+      timeField.setFieldLabel("Call Time");
       timeField.setIncrement(1);
       timeField.setForceSelection(true);
       
-      flexTable.setText(rowIndex, 0, "Time:");
+      flexTable.setText(rowIndex, 0, "Call Time:");
       flexTable.setWidget(rowIndex, 1, timeField);
       
       rowIndex++;
       
       locationField = new TextField<String>();
-      locationField.setFieldLabel("Location");
+      locationField.setFieldLabel("Reported Location");
       locationField.setValue("");
       locationField.setWidth(250);
       
-      flexTable.setText(rowIndex, 0, "Location:");
+      flexTable.setText(rowIndex, 0, "Reported Location:");
       flexTable.setWidget(rowIndex, 1, locationField);
       
       flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
@@ -353,7 +353,7 @@ public class ReportCallControl extends VerticalPanel
       flexTable.setText(rowIndex, 0 , "Species:");
       flexTable.setWidget(rowIndex, 1, speciesField);
       
-      flexTable.setText(rowIndex, 2, "Overall Condition:");
+      flexTable.setText(rowIndex, 2, "Reported Condition:");
       flexTable.setWidget(rowIndex, 3, createConditionComboBox());
       
       rowIndex++;
@@ -400,7 +400,7 @@ public class ReportCallControl extends VerticalPanel
       conditionListStore.add(new StringModel("Injured"));
       
       conditionComboBox = new ComboBox<StringModel>();
-      conditionComboBox.setFieldLabel("Condition");
+      conditionComboBox.setFieldLabel("Reported Condition");
       conditionComboBox.setDisplayField("name");
       conditionComboBox.setTriggerAction(TriggerAction.ALL);
       conditionComboBox.setStore(conditionListStore);

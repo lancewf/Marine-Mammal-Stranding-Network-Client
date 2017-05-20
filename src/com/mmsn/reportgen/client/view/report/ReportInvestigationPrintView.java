@@ -358,7 +358,7 @@ public class ReportInvestigationPrintView extends VerticalPanel
    {
       HorizontalPanel panel = new HorizontalPanel();
       
-      Label label2 = new Label("Postmortem Condition:");
+      Label label2 = new Label("Overall Condition:");
       
       label2.addStyleName("printLabel");
       

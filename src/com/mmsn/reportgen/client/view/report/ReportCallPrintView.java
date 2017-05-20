@@ -185,7 +185,7 @@ public class ReportCallPrintView extends VerticalPanel
    {
       HorizontalPanel panel = new HorizontalPanel();
       
-      Label label2 = new Label("Overall Condition:");
+      Label label2 = new Label("Reported Condition:");
       
       label2.addStyleName("printLabel");
       
@@ -203,7 +203,7 @@ public class ReportCallPrintView extends VerticalPanel
    {
       HorizontalPanel panel = new HorizontalPanel();
       
-      Label label1 = new Label("Location:");
+      Label label1 = new Label("Reported Location:");
       
       label1.addStyleName("printLabel");
       
@@ -257,7 +257,7 @@ public class ReportCallPrintView extends VerticalPanel
    {
       HorizontalPanel panel = new HorizontalPanel();
       
-      Label label2 = new Label("Time:");
+      Label label2 = new Label("Call Time:");
       
       label2.addStyleName("printLabel");
       
