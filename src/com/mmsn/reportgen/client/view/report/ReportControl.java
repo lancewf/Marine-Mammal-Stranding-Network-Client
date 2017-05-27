@@ -8,6 +8,7 @@ import com.mmsn.reportgen.client.connection.ServiceLocations;
 import com.mmsn.reportgen.client.data.attachment.AttachmentList;
 import com.mmsn.reportgen.client.data.report.Report;
 import com.mmsn.reportgen.client.data.report.ReportCall;
+import com.mmsn.reportgen.client.data.report.ReportHumanInteraction;
 import com.mmsn.reportgen.client.data.report.ReportInvestigation;
 import com.mmsn.reportgen.client.data.report.ReportLiveAnimals;
 import com.mmsn.reportgen.client.data.volunteer.Volunteer;
@@ -23,12 +24,15 @@ public class ReportControl extends VerticalPanel implements FormEditControl
    private ReportCallControl reportCallControl;
    private ReportInvestigationControl reportInvestigationControl;
    private ReportLiveAnimalsControl reportLiveAnimalsControl;
+   private ReportHumanInteractionControl reportHumanInteractionControl;
    private Label editLabel1;
    private Label editLabel2;
+   private Label editLabel3;
    private AttachmentsControl photoControl;
    private WidgetFactory widgetFactory;
    private Label saveLabel1;
    private Label saveLabel2;
+   private Label saveLabel3;   
    private Label writtenByLabel;
    
    // --------------------------------------------------------------------------
@@ -52,21 +56,26 @@ public class ReportControl extends VerticalPanel implements FormEditControl
       reportCallControl.setReadOnly(readOnly);
       reportInvestigationControl.setReadOnly(readOnly);
       reportLiveAnimalsControl.setReadOnly(readOnly);
+      reportHumanInteractionControl.setReadOnly(readOnly);
 
       if(readOnly)
       {
          editLabel1.setVisible(true);
          editLabel2.setVisible(true);
+         editLabel3.setVisible(true);
          saveLabel1.setVisible(false);
          saveLabel2.setVisible(false);
+         saveLabel3.setVisible(false);
          photoControl.setReadOnly(true);
       }
       else
       {
          editLabel1.setVisible(false);
          editLabel2.setVisible(false);
+         editLabel3.setVisible(false);
          saveLabel1.setVisible(true);
          saveLabel2.setVisible(true);
+         saveLabel3.setVisible(true);
          photoControl.setReadOnly(false);
       }
    }
@@ -74,6 +83,10 @@ public class ReportControl extends VerticalPanel implements FormEditControl
    public void setReportCall(ReportCall reportCall)
    {
       reportCallControl.setReportCall(reportCall);
+   }
+   
+   public void setReportHumanInteraction(ReportHumanInteraction reportHumanInteraction){
+	   reportHumanInteractionControl.setReportHumanInteraction(reportHumanInteraction);
    }
 
    public void setReportLiveAnimals(ReportLiveAnimals reportLiveAnimals)
@@ -100,6 +113,10 @@ public class ReportControl extends VerticalPanel implements FormEditControl
    {
       return reportLiveAnimalsControl.getReportLiveAnimals();
    }
+   
+   public ReportHumanInteraction getReportHumanInteraction(){
+	   return reportHumanInteractionControl.getReportHumanInteraction();
+   }
 
    public ReportInvestigation getReportInvestigation()
    {
@@ -113,6 +130,8 @@ public class ReportControl extends VerticalPanel implements FormEditControl
       setReportInvestigation(report.getReportInvestigation());
       
       setReportLiveAnimals(report.getReportLiveAnimals());
+      
+      setReportHumanInteraction(report.getReportHumanInteraction());
       
       photoControl.setIsPhotosTaken(report.getIsPhotoTaken());
       
@@ -144,6 +163,8 @@ public class ReportControl extends VerticalPanel implements FormEditControl
       reportInvestigationControl.fillReportInvestigation(
          report.getReportInvestigation());
       reportLiveAnimalsControl.fillReportLiveAnimals(report.getReportLiveAnimals());
+      
+      reportHumanInteractionControl.fillReportHumanInteraction(report.getReportHumanInteraction());
 
       report.setIsPhotoTaken(photoControl.getIsPhotosTaken());      
       report.setAttachments(photoControl.getAttachments());
@@ -164,16 +185,23 @@ public class ReportControl extends VerticalPanel implements FormEditControl
       
       editLabel1 = new Label("To edit this report select Edit at the top of this page.");
       editLabel2 = new Label("To edit this report select Edit at the top of this page.");
+      editLabel3 = new Label("To edit this report select Edit at the top of this page.");
+          
       saveLabel1 = new Label("Select Save to keep your changes.");
       saveLabel1.setVisible(false);
       saveLabel2 = new Label("Select Save to keep your changes.");
       saveLabel2.setVisible(false);
       
+      saveLabel3 = new Label("Select Save to keep your changes.");
+      saveLabel3.setVisible(false);
+        
       saveLabel1.setStyleName("saveLabel");
       saveLabel2.setStyleName("saveLabel");
+      saveLabel3.setStyleName("saveLabel");
       
       editLabel1.setStyleName("editLabel");
       editLabel2.setStyleName("editLabel");
+      editLabel3.setStyleName("editLabel");
       
       Label title = new Label("Stranding Response Report");
       
@@ -195,6 +223,8 @@ public class ReportControl extends VerticalPanel implements FormEditControl
       reportLiveAnimalsControl = 
          new ReportLiveAnimalsControl();
       
+      reportHumanInteractionControl = new ReportHumanInteractionControl();
+      
       photoControl = new AttachmentsControl(serviceLocations, widgetFactory);
       
       add(reportCallControl);
@@ -214,7 +244,14 @@ public class ReportControl extends VerticalPanel implements FormEditControl
       setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
       
       add(reportLiveAnimalsControl);
-
+      
+      add(reportHumanInteractionControl);
+      
+      setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+      add(editLabel3);
+      add(saveLabel3);
+      
+      setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
       add(photoControl);
    }
 }

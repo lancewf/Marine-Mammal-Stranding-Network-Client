@@ -11,6 +11,8 @@ import com.mmsn.reportgen.client.data.attachment.Attachment;
 import com.mmsn.reportgen.client.data.attachment.AttachmentList;
 import com.mmsn.reportgen.client.data.report.Report;
 import com.mmsn.reportgen.client.data.report.ReportCall;
+import com.mmsn.reportgen.client.data.report.ReportHumanInteraction;
+import com.mmsn.reportgen.client.data.report.ReportHumanInteractionSection;
 import com.mmsn.reportgen.client.data.report.ReportInvestigation;
 import com.mmsn.reportgen.client.data.report.ReportLiveAnimals;
 import com.mmsn.reportgen.client.data.volunteer.Volunteer;
@@ -128,6 +130,13 @@ public class ReportBuilder
       
       
       report.setReportLiveAnimals(reportLiveAnimals);
+      
+      //************************ Human Interaction *************************
+ 
+      ReportHumanInteraction reportHumanInteraction = new ReportHumanInteraction();
+      reportHumanInteraction.setSections(getHumanInteractionSections(reportData));
+      
+      report.setReportHumanInteraction(reportHumanInteraction);
  
       //************************ Attachments *************************
       
@@ -146,6 +155,36 @@ public class ReportBuilder
    // Private Members
    // --------------------------------------------------------------------------
 
+   private List<ReportHumanInteractionSection> getHumanInteractionSections(ReportData reportData) {
+		JavaScriptObject javaScriptObject = null;
+
+		try {
+			javaScriptObject = reportData.getHumanInteractionSections();
+		} catch (Exception ex) {
+			javaScriptObject = null;
+		}
+
+		List<ReportHumanInteractionSection> sections = new ArrayList<ReportHumanInteractionSection>();
+
+		if (javaScriptObject != null) {
+			JsArray<ReportHumanInteractionSectionData> sectionDatas = asArrayOfHumanInteractionSectionData(javaScriptObject);
+			for (int index = 0; index < sectionDatas.length(); index++) {
+				ReportHumanInteractionSectionData sectionData = sectionDatas.get(index);
+				
+				ReportHumanInteractionSection section = new ReportHumanInteractionSection();
+				
+				section.setExamined(sectionData.isExamined());
+				section.setName(sectionData.getName());
+				section.setPossibleHiLesion(sectionData.getPossibleHiLesion());
+				section.setPossibleSource(sectionData.getPossibleSource());
+				section.setScavengerDamage(sectionData.getScavengerDamage());
+
+				sections.add(section);
+			}
+		}
+		return sections;
+   }
+   
 	private List<Attachment> getAttachments(ReportData reportData) {
 		JavaScriptObject javaScriptObject = null;
 
@@ -179,9 +218,13 @@ public class ReportBuilder
 		return attachments;
 	}
    
-   private final native JsArray<AttachmentData> asArrayOfAttachmentData(
-      JavaScriptObject json) 
+   private final native JsArray<ReportHumanInteractionSectionData> asArrayOfHumanInteractionSectionData(JavaScriptObject json) 
    /*-{
 	return eval(json);
-}-*/;
+   }-*/;
+	   
+   private final native JsArray<AttachmentData> asArrayOfAttachmentData(JavaScriptObject json) 
+   /*-{
+	return eval(json);
+   }-*/;
 }

@@ -32,6 +32,8 @@ public class Report
    
    private ReportInvestigation reportInvestigation;
    
+   private ReportHumanInteraction reportHumanInteraction;
+   
    private AttachmentList attachmentList = new AttachmentList();
    
    // --------------------------------------------------------------------------
@@ -146,9 +148,13 @@ public class Report
       request.put("is_action_other", JSONBoolean.getInstance(reportLiveAnimals.isActionOther()));
       request.put("location", new JSONString(reportLiveAnimals.getLocation()));
 
+      //************************ Human Interaction *************************
+      
+      request.put("human_interactions", reportHumanInteraction.getJson());
+      
       //************************ Attachments *************************
       
-      JSONArray jsonArray = new JSONArray();
+      JSONArray attachementArray = new JSONArray();
       
       List<Attachment> attachments = attachmentList.getAttachments();
       
@@ -158,10 +164,10 @@ public class Report
          
          JSONValue attachmentJson = attachment.getJson();
 
-         jsonArray.set(index, attachmentJson);
+         attachementArray.set(index, attachmentJson);
       }
       
-      request.put("attachments", jsonArray);
+      request.put("attachments", attachementArray);
       
       return request;
    }
@@ -234,5 +240,15 @@ public class Report
    public void setReportLiveAnimals(ReportLiveAnimals reportLiveAnimals)
    {
       this.reportLiveAnimals = reportLiveAnimals;
+   }
+   
+   public ReportHumanInteraction getReportHumanInteraction()
+   {
+      return reportHumanInteraction;
+   }
+
+   public void setReportHumanInteraction(ReportHumanInteraction reportHumanInteraction)
+   {
+      this.reportHumanInteraction = reportHumanInteraction;
    }
 }

@@ -236,7 +236,6 @@ public class ReportData extends JavaScriptObject
    /*-{
       return this.is_con_other;
    }-*/;
-
    public final native boolean getLiveAnimalsIsActionLeftAtSite()
    /*-{
       return this.is_action_left_at_site;
@@ -277,6 +276,13 @@ public class ReportData extends JavaScriptObject
    public final native String getLiveAnimalsLocation()
    /*-{
       return this.live_animals_location;
+   }-*/;
+   
+   //************************ Human Interaction Sections *************************
+   
+   public final native JavaScriptObject getHumanInteractionSections()
+   /*-{
+      return this.human_interaction_sections;
    }-*/;
    
    //************************ Attachments *************************

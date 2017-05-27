@@ -16,6 +16,7 @@ public class ReportPrintView extends VerticalPanel
    private ReportCallPrintView reportCallPrintView;
    private ReportLiveAnimalsPrintView reportLiveAnimalsPrintView;
    private ReportAttachmentPrintView reportAttachmentPrintView;
+   private ReportHumanInteractionPrintView reportHumanInteractionPrintView; 
    
    // --------------------------------------------------------------------------
    // Constructor
@@ -35,6 +36,7 @@ public class ReportPrintView extends VerticalPanel
       reportInvestigationPrintView.setReportInvestigation(report.getReportInvestigation());
       reportCallPrintView.setReportCall(report.getReportCall());
       reportLiveAnimalsPrintView.setReportLiveAnimals(report.getReportLiveAnimals());
+      reportHumanInteractionPrintView.setReportHumanInteraction(report.getReportHumanInteraction());
       reportAttachmentPrintView.setAttachments(report.getAttachments());
    }
    
@@ -50,6 +52,7 @@ public class ReportPrintView extends VerticalPanel
       reportCallPrintView = new ReportCallPrintView();
       reportInvestigationPrintView = new ReportInvestigationPrintView();
       reportLiveAnimalsPrintView = new ReportLiveAnimalsPrintView();
+      reportHumanInteractionPrintView = new ReportHumanInteractionPrintView();
 
       setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
       setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
@@ -62,6 +65,7 @@ public class ReportPrintView extends VerticalPanel
       add(reportCallPrintView);
       add(reportInvestigationPrintView);
       add(reportLiveAnimalsPrintView);
+      add(reportHumanInteractionPrintView);
       add(reportAttachmentPrintView);
       
       setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
