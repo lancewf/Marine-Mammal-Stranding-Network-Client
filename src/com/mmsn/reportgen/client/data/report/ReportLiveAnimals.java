@@ -28,7 +28,7 @@ public class ReportLiveAnimals {
 	private boolean isActionTransferredToRehab;
 	private boolean isActionOther;
 	
-	private String location;
+	private String relocatedLocation;
 
 	// --------------------------------------------------------------------------
 	// Constructor
@@ -194,11 +194,11 @@ public class ReportLiveAnimals {
 		this.isActionOther = isActionOther;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getRelocatedLocation() {
+		return relocatedLocation;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setRelocatedLocation(String relocatedLocation) {
+		this.relocatedLocation = relocatedLocation;
 	}
 }

@@ -126,7 +126,7 @@ public class ReportBuilder
       reportLiveAnimals.setActionEuthanizedDuringTransport(reportData.getLiveAnimalsIsActionEuthanizedDuringTransport());
       reportLiveAnimals.setActionTransferredToRehab(reportData.getLiveAnimalsIsActionTransferredToRehab());
       reportLiveAnimals.setActionOther(reportData.getLiveAnimalsIsActionOther());
-      reportLiveAnimals.setLocation(reportData.getLiveAnimalsLocation());
+      reportLiveAnimals.setRelocatedLocation(reportData.getLiveAnimalsRelocatedLocation());
       
       
       report.setReportLiveAnimals(reportLiveAnimals);

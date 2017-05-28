@@ -273,9 +273,9 @@ public class ReportData extends JavaScriptObject
       return this.is_action_other;
    }-*/;
 
-   public final native String getLiveAnimalsLocation()
+   public final native String getLiveAnimalsRelocatedLocation()
    /*-{
-      return this.live_animals_location;
+      return this.relocated_location;
    }-*/;
    
    //************************ Human Interaction Sections *************************

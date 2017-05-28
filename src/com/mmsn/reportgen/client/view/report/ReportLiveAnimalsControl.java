@@ -286,7 +286,7 @@ public class ReportLiveAnimalsControl extends VerticalPanel
 	   setActionTransferredToRehab(reportLiveAnimals.isActionTransferredToRehab());
 	   setActionOther(reportLiveAnimals.isActionOther());
 	   
-	   setLocation(reportLiveAnimals.getLocation());
+	   setLocation(reportLiveAnimals.getRelocatedLocation());
    }
    
    public void fillReportLiveAnimals(ReportLiveAnimals reportLiveAnimals)
@@ -312,7 +312,7 @@ public class ReportLiveAnimalsControl extends VerticalPanel
 	   reportLiveAnimals.setActionTransferredToRehab(isActionTransferredToRehab());
 	   reportLiveAnimals.setActionOther(isActionOther());
 	   
-	   reportLiveAnimals.setLocation(getLocation());
+	   reportLiveAnimals.setRelocatedLocation(getLocation());
    }
    
    public ReportLiveAnimals getReportLiveAnimals()

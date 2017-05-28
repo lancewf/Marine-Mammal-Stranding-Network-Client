@@ -1,6 +1,5 @@
 package com.mmsn.reportgen.client.data.report;
 
-import com.google.gwt.dev.jjs.ast.js.JsonObject.JsonPropInit;
 import com.google.gwt.json.client.JSONBoolean;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
