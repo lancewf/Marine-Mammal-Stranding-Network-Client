@@ -282,7 +282,7 @@ public class ReportData extends JavaScriptObject
    
    public final native JavaScriptObject getHumanInteractionSections()
    /*-{
-      return this.human_interaction_sections;
+      return this.report_human_interaction_sections;
    }-*/;
    
    //************************ Attachments *************************

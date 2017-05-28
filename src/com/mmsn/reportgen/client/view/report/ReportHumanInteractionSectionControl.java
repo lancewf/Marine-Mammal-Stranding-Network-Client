@@ -53,16 +53,6 @@ public class ReportHumanInteractionSectionControl extends VerticalPanel
 	   return this.name;
    }
    
-   public boolean isExamined()
-   {
-      return isExaminedField.getValue();
-   }
-   
-   public void setExamined(boolean isExamined)
-   {
-	   isExaminedField.setValue(isExamined);
-   }
-   
    public boolean isReadOnly()
    {
       return readOnly;
@@ -81,11 +71,15 @@ public class ReportHumanInteractionSectionControl extends VerticalPanel
    }
    
    public void setReportHumanInteractionSection(ReportHumanInteractionSection reportHumanInteractionSection){
-	   setExamined(reportHumanInteractionSection.isExamined());
+	   isExaminedField.setValue(reportHumanInteractionSection.isExamined());
+	   possibleHiLesionComboBox.setValue(new StringModel(reportHumanInteractionSection.getPossibleHiLesion()));
+	   possibleSourceComboBox.setValue(new StringModel(reportHumanInteractionSection.getPossibleSource()));
+	   scavengerDamageComboBox.setValue(new StringModel(reportHumanInteractionSection.getScavengerDamage()));
+	   this.name = reportHumanInteractionSection.getName();
    }
    
    public void fillReportHumanInteractionSection(ReportHumanInteractionSection reportHumanInteractionSection){
-	   reportHumanInteractionSection.setExamined(isExamined());
+	   reportHumanInteractionSection.setExamined(isExaminedField.getValue());
 	   reportHumanInteractionSection.setName(name);
 	   reportHumanInteractionSection.setPossibleHiLesion(possibleHiLesionComboBox.getRawValue());
 	   reportHumanInteractionSection.setPossibleSource(possibleSourceComboBox.getRawValue());
@@ -109,12 +103,19 @@ public class ReportHumanInteractionSectionControl extends VerticalPanel
    {
       readOnly = false;
       isExaminedField.setReadOnly(false);
+      possibleHiLesionComboBox.setReadOnly(false);
+      possibleSourceComboBox.setReadOnly(false);
+      scavengerDamageComboBox.setReadOnly(false);
    }
    
    private void setToReadOnly()
    {
       readOnly = true;
       isExaminedField.setReadOnly(true);
+      possibleHiLesionComboBox.setReadOnly(true);
+      possibleSourceComboBox.setReadOnly(true);
+      scavengerDamageComboBox.setReadOnly(true);
+      
    }
 
 	private void initialize(String name, FlexTable flexTable) {
