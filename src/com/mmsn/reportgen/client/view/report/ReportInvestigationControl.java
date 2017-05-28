@@ -45,7 +45,6 @@ public class ReportInvestigationControl extends VerticalPanel
    private ComboBox<StringModel> sexComboBox;
    private NumberField weightField;
    private NumberField straightLengthField;
-   private NumberField contourLengthField;
    private NumberField girthField;
    private TextArea commentsField;
    private Label tagsLabel;
@@ -53,7 +52,6 @@ public class ReportInvestigationControl extends VerticalPanel
    private Label sealPickupLabel;
    private Label sexLabel;
    private Label girthLabel;
-   private Label contourLengthLabel;
    private Label straightLengthLabel;
    private Label weightLabel;
    
@@ -107,7 +105,6 @@ public class ReportInvestigationControl extends VerticalPanel
       setSex(reportInvestigation.getSex());
       setWeight(reportInvestigation.getWeight());
       setStraightLength(reportInvestigation.getStraightLength());
-      setContourLength(reportInvestigation.getContourLength());
       setGirth(reportInvestigation.getGirth());
       setComments(reportInvestigation.getComments());
    }
@@ -128,7 +125,6 @@ public class ReportInvestigationControl extends VerticalPanel
       reportInvestigation.setSex(getSex());
       reportInvestigation.setWeight(getWeight());
       reportInvestigation.setStraightLength(getStraightLength());
-      reportInvestigation.setContourLength(getContourLength());
       reportInvestigation.setGirth(getGirth());
       reportInvestigation.setComments(getComments());
    }
@@ -290,25 +286,6 @@ public class ReportInvestigationControl extends VerticalPanel
       straightLengthField.setValue(straightLength);
    }
 
-   public double getContourLength()
-   {
-      Number value = contourLengthField.getValue();
-      
-      if(value != null)
-      {
-         return value.doubleValue();
-      }
-      else
-      {
-         return 0.0;
-      }
-   }
-
-   public void setContourLength(double contourLength)
-   {
-      contourLengthField.setValue(contourLength);
-   }
-
    public double getGirth()
    {
       Number value = girthField.getValue();
@@ -371,7 +348,6 @@ public class ReportInvestigationControl extends VerticalPanel
       sexComboBox.setReadOnly(false);
       weightField.setReadOnly(false);
       straightLengthField.setReadOnly(false);
-      contourLengthField.setReadOnly(false);
       girthField.setReadOnly(false);
       commentsField.setReadOnly(false);
    }
@@ -393,7 +369,6 @@ public class ReportInvestigationControl extends VerticalPanel
       sexComboBox.setReadOnly(true);
       weightField.setReadOnly(true);
       straightLengthField.setReadOnly(true);
-      contourLengthField.setReadOnly(true);
       girthField.setReadOnly(true);
       commentsField.setReadOnly(true);
    }
@@ -411,7 +386,7 @@ public class ReportInvestigationControl extends VerticalPanel
       investigatorSupportField = new TextField<String>();
       investigatorSupportField.setWidth(250);
       
-      flexTable.setText(rowIndex, 0 , "Investigator / Support:");
+      flexTable.setText(rowIndex, 0 , "Responder(s):");
       flexTable.setWidget(rowIndex, 1, investigatorSupportField);
       
       flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
@@ -464,7 +439,7 @@ public class ReportInvestigationControl extends VerticalPanel
       flexTable.setText(rowIndex, 0 , "Species:");
       flexTable.setWidget(rowIndex, 1, speciesField);
       
-      flexTable.setText(rowIndex, 2, "Condition:");
+      flexTable.setText(rowIndex, 2, "Overall Condition:");
       flexTable.setWidget(rowIndex, 3, createConditionControl());
       
       rowIndex++;
@@ -548,17 +523,7 @@ public class ReportInvestigationControl extends VerticalPanel
       flexTable.setWidget(rowIndex, 1, straightLengthField);
       
       rowIndex++;
-      
-      contourLengthField = new NumberField();
-      contourLengthField.setValue(0);
-      contourLengthField.setFieldLabel("Contour Length (cm)");
-      
-      contourLengthLabel = new Label("Contour Length (cm):");
-      flexTable.setWidget(rowIndex, 0, contourLengthLabel);
-      flexTable.setWidget(rowIndex, 1, contourLengthField);
-      
-      rowIndex++;
-      
+
       girthField = new NumberField();
       girthField.setValue(0);
       girthField.setFieldLabel("Girth (cm)");
@@ -570,12 +535,12 @@ public class ReportInvestigationControl extends VerticalPanel
       rowIndex++;
       
       commentsField = new TextArea();
-      commentsField.setFieldLabel("Comments");
+      commentsField.setFieldLabel("General Comments");
       commentsField.setValue("");
       commentsField.setWidth(450);
       commentsField.setHeight(80);
       
-      flexTable.setText(rowIndex,0 , "Comments:");
+      flexTable.setText(rowIndex,0 , "General Comments:");
       flexTable.setWidget(rowIndex,1, commentsField);
       flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
       
@@ -597,8 +562,6 @@ public class ReportInvestigationControl extends VerticalPanel
       weightField.setVisible(!value);
       straightLengthLabel.setVisible(!value);
       straightLengthField.setVisible(!value);
-      contourLengthLabel.setVisible(!value);
-      contourLengthField.setVisible(!value);
       girthLabel.setVisible(!value);
       girthField.setVisible(!value);
    }
@@ -607,9 +570,10 @@ public class ReportInvestigationControl extends VerticalPanel
    {
       ListStore<StringModel> listStore = new ListStore<StringModel>();
       
+      listStore.add(new StringModel("Not Determined"));
+      listStore.add(new StringModel("Unable to determine"));
       listStore.add(new StringModel("Male"));
       listStore.add(new StringModel("Female"));
-      listStore.add(new StringModel("Unknown"));
       
       sexComboBox = new ComboBox<StringModel>();
       sexComboBox.setFieldLabel("Sex");
@@ -617,7 +581,7 @@ public class ReportInvestigationControl extends VerticalPanel
       sexComboBox.setTriggerAction(TriggerAction.ALL);
       sexComboBox.setStore(listStore);
       sexComboBox.setForceSelection(true);
-      sexComboBox.setValue(new StringModel("Unknown"));
+      sexComboBox.setValue(new StringModel("Not Determined"));
       
       return sexComboBox;
    }
@@ -673,7 +637,7 @@ public class ReportInvestigationControl extends VerticalPanel
       listStore.add(new StringModel("Dead Ugly"));
       
       conditionComboBox = new ComboBox<StringModel>();
-      conditionComboBox.setFieldLabel("Condition");
+      conditionComboBox.setFieldLabel("Overall Condition");
       conditionComboBox.setDisplayField("name");
       conditionComboBox.setTriggerAction(TriggerAction.ALL);
       conditionComboBox.setStore(listStore);

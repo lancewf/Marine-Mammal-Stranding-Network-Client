@@ -11,7 +11,10 @@ import com.mmsn.reportgen.client.data.attachment.Attachment;
 import com.mmsn.reportgen.client.data.attachment.AttachmentList;
 import com.mmsn.reportgen.client.data.report.Report;
 import com.mmsn.reportgen.client.data.report.ReportCall;
+import com.mmsn.reportgen.client.data.report.ReportHumanInteraction;
+import com.mmsn.reportgen.client.data.report.ReportHumanInteractionSection;
 import com.mmsn.reportgen.client.data.report.ReportInvestigation;
+import com.mmsn.reportgen.client.data.report.ReportLiveAnimals;
 import com.mmsn.reportgen.client.data.volunteer.Volunteer;
 import com.mmsn.reportgen.client.data.volunteer.VolunteerManagerable;
 
@@ -92,13 +95,50 @@ public class ReportBuilder
       reportInvestigation.setSex(reportData.getSex());
       reportInvestigation.setWeight(reportData.getWeight());
       reportInvestigation.setStraightLength(reportData.getStraightLength());
-      reportInvestigation.setContourLength(reportData.getContourLength());
       reportInvestigation.setGirth(reportData.getGirth());
       reportInvestigation.setComments(reportData.getInvestigationComments());
       
       report.setIsPhotoTaken(reportData.getIsPhotoTaken());
       
       report.setReportInvestigation(reportInvestigation);
+     
+      //************************ Live Animals *************************
+      
+      ReportLiveAnimals reportLiveAnimals = new ReportLiveAnimals();
+      
+      reportLiveAnimals.setConSick(reportData.getLiveAnimalsIsConSick());
+      reportLiveAnimals.setConInjured(reportData.getLiveAnimalsIsConInjured());
+      reportLiveAnimals.setConOutOfHabitat(reportData.getLiveAnimalsIsConOutOfHabitat());
+      reportLiveAnimals.setConDeemedReleasable(reportData.getLiveAnimalsIsConDeemedReleasable());
+      reportLiveAnimals.setConAbandoned(reportData.getLiveAnimalsIsConAbandoned());
+      reportLiveAnimals.setConInaccessible(reportData.getLiveAnimalsIsConInaccessible());
+      reportLiveAnimals.setConLocationHazardToAnimal(reportData.getLiveAnimalsIsConLocationHazardToAnimal());
+      reportLiveAnimals.setConLocationHazardToHumans(reportData.getLiveAnimalsIsConLocationHazardToHumans());
+      reportLiveAnimals.setConUnknown(reportData.getLiveAnimalsIsConUnknown());
+      reportLiveAnimals.setConOther(reportData.getLiveAnimalsIsConOther());
+      
+      reportLiveAnimals.setActionLeftAtSite(reportData.getLiveAnimalsIsActionLeftAtSite());
+      reportLiveAnimals.setActionImmediateReleaseAtSite(reportData.getLiveAnimalsIsActionImmediateReleaseAtSite());
+      reportLiveAnimals.setActionRelocated(reportData.getLiveAnimalsIsActionRelocated());
+      reportLiveAnimals.setActionDiedAtSite(reportData.getLiveAnimalsIsActionDiedAtSite());
+      reportLiveAnimals.setActionDiedDuringTransport(reportData.getLiveAnimalsIsActionDiedDuringTransport());
+      reportLiveAnimals.setActionEuthanizedAtSite(reportData.getLiveAnimalsIsActionEuthanizedAtSite());
+      reportLiveAnimals.setActionEuthanizedDuringTransport(reportData.getLiveAnimalsIsActionEuthanizedDuringTransport());
+      reportLiveAnimals.setActionTransferredToRehab(reportData.getLiveAnimalsIsActionTransferredToRehab());
+      reportLiveAnimals.setActionOther(reportData.getLiveAnimalsIsActionOther());
+      reportLiveAnimals.setRelocatedLocation(reportData.getLiveAnimalsRelocatedLocation());
+      
+      
+      report.setReportLiveAnimals(reportLiveAnimals);
+      
+      //************************ Human Interaction *************************
+ 
+      ReportHumanInteraction reportHumanInteraction = new ReportHumanInteraction();
+      reportHumanInteraction.setSections(getHumanInteractionSections(reportData));
+      
+      report.setReportHumanInteraction(reportHumanInteraction);
+ 
+      //************************ Attachments *************************
       
       List<Attachment> attachments = getAttachments(reportData);
       
@@ -115,6 +155,36 @@ public class ReportBuilder
    // Private Members
    // --------------------------------------------------------------------------
 
+   private List<ReportHumanInteractionSection> getHumanInteractionSections(ReportData reportData) {
+		JavaScriptObject javaScriptObject = null;
+
+		try {
+			javaScriptObject = reportData.getHumanInteractionSections();
+		} catch (Exception ex) {
+			javaScriptObject = null;
+		}
+
+		List<ReportHumanInteractionSection> sections = new ArrayList<ReportHumanInteractionSection>();
+
+		if (javaScriptObject != null) {
+			JsArray<ReportHumanInteractionSectionData> sectionDatas = asArrayOfHumanInteractionSectionData(javaScriptObject);
+			for (int index = 0; index < sectionDatas.length(); index++) {
+				ReportHumanInteractionSectionData sectionData = sectionDatas.get(index);
+				
+				ReportHumanInteractionSection section = new ReportHumanInteractionSection();
+				
+				section.setExamined(sectionData.isExamined());
+				section.setName(sectionData.getName());
+				section.setPossibleHiLesion(sectionData.getPossibleHiLesion());
+				section.setPossibleSource(sectionData.getPossibleSource());
+				section.setScavengerDamage(sectionData.getScavengerDamage());
+
+				sections.add(section);
+			}
+		}
+		return sections;
+   }
+   
 	private List<Attachment> getAttachments(ReportData reportData) {
 		JavaScriptObject javaScriptObject = null;
 
@@ -148,9 +218,13 @@ public class ReportBuilder
 		return attachments;
 	}
    
-   private final native JsArray<AttachmentData> asArrayOfAttachmentData(
-      JavaScriptObject json) 
+   private final native JsArray<ReportHumanInteractionSectionData> asArrayOfHumanInteractionSectionData(JavaScriptObject json) 
    /*-{
 	return eval(json);
-}-*/;
+   }-*/;
+	   
+   private final native JsArray<AttachmentData> asArrayOfAttachmentData(JavaScriptObject json) 
+   /*-{
+	return eval(json);
+   }-*/;
 }

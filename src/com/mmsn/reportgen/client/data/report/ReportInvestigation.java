@@ -21,7 +21,6 @@ public class ReportInvestigation
    private String sex;
    private double weight;
    private double straightLength;
-   private double contourLength;
    private double girth;
    private String comments;
    
@@ -166,16 +165,6 @@ public class ReportInvestigation
    public void setStraightLength(double straightLength)
    {
       this.straightLength = straightLength;
-   }
-
-   public double getContourLength()
-   {
-      return contourLength;
-   }
-
-   public void setContourLength(double contourLength)
-   {
-      this.contourLength = contourLength;
    }
 
    public double getGirth()

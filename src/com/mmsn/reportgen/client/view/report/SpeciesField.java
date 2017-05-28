@@ -55,6 +55,7 @@ public class SpeciesField extends VerticalPanel
       listStore.add(new StringModel("Dall's Porpoise"));
       listStore.add(new StringModel("Harbor Porpoise"));
       listStore.add(new StringModel("Harbor Seal"));
+      listStore.add(new StringModel("Northern Elephant Seal"));
       listStore.add(new StringModel("Other"));
       
       speciesField = new ComboBox<StringModel>();

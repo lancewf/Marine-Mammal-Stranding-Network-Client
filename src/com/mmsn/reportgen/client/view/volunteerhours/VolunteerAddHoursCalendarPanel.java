@@ -90,7 +90,7 @@ public class VolunteerAddHoursCalendarPanel extends VerticalPanel implements Pan
       
       totalMonthlyHoursLabel = new Label("-");
       
-      Label label = new Label("Total Montly Hours: ");
+      Label label = new Label("Total Monthly Hours: ");
       panel.add(label);
       panel.add(totalMonthlyHoursLabel);
       
@@ -118,7 +118,7 @@ public class VolunteerAddHoursCalendarPanel extends VerticalPanel implements Pan
       
       totalMonthlyMilesLabel = new Label("-");
       
-      Label label = new Label("Total Montly Miles: ");
+      Label label = new Label("Total Monthly Miles: ");
       panel.add(label);
       panel.add(totalMonthlyMilesLabel);
       

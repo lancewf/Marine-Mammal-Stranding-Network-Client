@@ -276,7 +276,7 @@ public class ReportCallControl extends VerticalPanel
 
    private void initialize()
    {
-      add(new HTML("<h3>CALL</h3><br />"));
+      add(new HTML("<h3>Initial Report</h3><br />"));
       
       FlexTable flexTable = new FlexTable();
       flexTable.setCellSpacing(10);
@@ -285,11 +285,11 @@ public class ReportCallControl extends VerticalPanel
       int rowIndex = 1;
       
       responderField = new TextField<String>();
-      responderField.setFieldLabel("Responder");
+      responderField.setFieldLabel("Responder(s)");
       responderField.setValue("");
       responderField.setWidth(250);
       
-      flexTable.setText(rowIndex, 0 , "Responder:");
+      flexTable.setText(rowIndex, 0 , "Responder(s):");
       flexTable.setWidget(rowIndex, 1, responderField);
       
       flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
@@ -304,15 +304,27 @@ public class ReportCallControl extends VerticalPanel
       rowIndex++;
       
       timeField = new TimeField();
-      timeField.setFieldLabel("Time");
+      timeField.setFieldLabel("Call Time");
       timeField.setIncrement(1);
       timeField.setForceSelection(true);
       
-      flexTable.setText(rowIndex, 0, "Time:");
+      flexTable.setText(rowIndex, 0, "Call Time:");
       flexTable.setWidget(rowIndex, 1, timeField);
       
       rowIndex++;
       
+      locationField = new TextField<String>();
+      locationField.setFieldLabel("Reported Location");
+      locationField.setValue("");
+      locationField.setWidth(250);
+      
+      flexTable.setText(rowIndex, 0, "Reported Location:");
+      flexTable.setWidget(rowIndex, 1, locationField);
+      
+      flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
+      
+      rowIndex++;
+
       flexTable.setText(rowIndex, 0, "Call From:");
       flexTable.setWidget(rowIndex, 1, createCallFrom());
       flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
@@ -335,24 +347,13 @@ public class ReportCallControl extends VerticalPanel
       
       rowIndex++;
       
-      locationField = new TextField<String>();
-      locationField.setFieldLabel("Location");
-      locationField.setValue("");
-      locationField.setWidth(250);
-      
-      flexTable.setText(rowIndex, 0, "Location:");
-      flexTable.setWidget(rowIndex, 1, locationField);
-      
-      flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
-      
-      rowIndex++;
       
       speciesField = new SpeciesField();
       
       flexTable.setText(rowIndex, 0 , "Species:");
       flexTable.setWidget(rowIndex, 1, speciesField);
       
-      flexTable.setText(rowIndex, 2, "Condition:");
+      flexTable.setText(rowIndex, 2, "Reported Condition:");
       flexTable.setWidget(rowIndex, 3, createConditionComboBox());
       
       rowIndex++;
@@ -367,12 +368,12 @@ public class ReportCallControl extends VerticalPanel
       rowIndex++;
       
       commentsField = new TextArea();
-      commentsField.setFieldLabel("Comments");
+      commentsField.setFieldLabel("General Comments");
       commentsField.setValue("");
       commentsField.setWidth(450);
       commentsField.setHeight(80);
       
-      flexTable.setText(rowIndex,0 , "Comments:");
+      flexTable.setText(rowIndex,0 , "General Comments:");
       flexTable.setWidget(rowIndex,1, commentsField);
       flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
       
@@ -399,7 +400,7 @@ public class ReportCallControl extends VerticalPanel
       conditionListStore.add(new StringModel("Injured"));
       
       conditionComboBox = new ComboBox<StringModel>();
-      conditionComboBox.setFieldLabel("Condition");
+      conditionComboBox.setFieldLabel("Reported Condition");
       conditionComboBox.setDisplayField("name");
       conditionComboBox.setTriggerAction(TriggerAction.ALL);
       conditionComboBox.setStore(conditionListStore);

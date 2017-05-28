@@ -25,8 +25,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
 
    private Label girthField;
 
-   private Label contourLengthField;
-
    private Label straightLengthField;
 
    private Label weightField;
@@ -56,7 +54,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
    private Label animalNotFoundField;
    
    private Label girthlabel;
-   private Label contourLengthlabel;
    private Label straightLengthLabel;
    private Label weightLabel;
    private Label sexlabel;
@@ -93,8 +90,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
          animalNotFoundField.setText("X");
          girthField.setVisible(false);
          girthlabel.setVisible(false);
-         contourLengthField.setVisible(false);
-         contourLengthlabel.setVisible(false);
          straightLengthField.setVisible(false);
          straightLengthLabel.setVisible(false);
          weightField.setVisible(false);
@@ -113,8 +108,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
          animalNotFoundField.setText("_");
          girthField.setVisible(true);
          girthlabel.setVisible(true);
-         contourLengthField.setVisible(true);
-         contourLengthlabel.setVisible(true);
          straightLengthField.setVisible(true);
          straightLengthLabel.setVisible(true);
          weightField.setVisible(true);
@@ -130,7 +123,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
       }
       
       girthField.setText(reportInvestigation.getGirth() + " cm");
-      contourLengthField.setText(reportInvestigation.getContourLength() + " cm");
       straightLengthField.setText(reportInvestigation.getStraightLength() + " cm");
       weightField.setText(reportInvestigation.getWeight() + " kg");
       sexField.setText(reportInvestigation.getSex());
@@ -207,10 +199,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
       
       flexTable.setWidget(index, 0, createStraightLenghtControl());
       
-      flexTable.setWidget(index, 1, createContourLenghtControl());
-      
-      index++;
-      
       flexTable.setWidget(index, 0, createGirthControl());
       
       index++;
@@ -226,7 +214,7 @@ public class ReportInvestigationPrintView extends VerticalPanel
    {
       HorizontalPanel panel = new HorizontalPanel();
       
-      Label label2 = new Label("Comments:");
+      Label label2 = new Label("General Comments:");
       
       label2.addStyleName("printLabel");
       
@@ -254,24 +242,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
       
       panel.add(girthlabel);
       panel.add(girthField);
-      
-      return panel;
-   }
-
-   private Widget createContourLenghtControl()
-   {
-      HorizontalPanel panel = new HorizontalPanel();
-      
-      contourLengthlabel = new Label("Contour Length:");
-      
-      contourLengthlabel.addStyleName("printLabel");
-      
-      contourLengthField = new Label("");
-      
-      contourLengthField.addStyleName("printField");
-      
-      panel.add(contourLengthlabel);
-      panel.add(contourLengthField);
       
       return panel;
    }
@@ -388,7 +358,7 @@ public class ReportInvestigationPrintView extends VerticalPanel
    {
       HorizontalPanel panel = new HorizontalPanel();
       
-      Label label2 = new Label("Condition:");
+      Label label2 = new Label("Overall Condition:");
       
       label2.addStyleName("printLabel");
       
@@ -514,7 +484,7 @@ public class ReportInvestigationPrintView extends VerticalPanel
    {
       HorizontalPanel panel = new HorizontalPanel();
       
-      Label label1 = new Label("Investigator/Support:");
+      Label label1 = new Label("Responder(s):");
       
       label1.addStyleName("printLabel");
       

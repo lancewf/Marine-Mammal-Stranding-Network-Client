@@ -184,11 +184,6 @@ public class ReportData extends JavaScriptObject
       return this.straight_length;
    }-*/;
    
-   public final native double getContourLength()
-   /*-{
-      return this.contour_length;
-   }-*/;
-   
    public final native double getGirth()
    /*-{
       return this.girth;
@@ -199,6 +194,99 @@ public class ReportData extends JavaScriptObject
       return this.investigation_comments;
    }-*/;
    
+   //************************ Live Animals *************************
+   
+   public final native boolean getLiveAnimalsIsConSick()
+   /*-{
+      return this.is_con_sick;
+   }-*/;
+   public final native boolean getLiveAnimalsIsConInjured()
+   /*-{
+      return this.is_con_injured;
+   }-*/;
+   public final native boolean getLiveAnimalsIsConOutOfHabitat()
+   /*-{
+      return this.is_con_out_of_habitat;
+   }-*/;
+   public final native boolean getLiveAnimalsIsConDeemedReleasable()
+   /*-{
+      return this.is_con_deemed_releasable;
+   }-*/;
+   public final native boolean getLiveAnimalsIsConAbandoned()
+   /*-{
+      return this.is_con_abandoned;
+   }-*/;
+   public final native boolean getLiveAnimalsIsConInaccessible()
+   /*-{
+      return this.is_con_inaccessible;
+   }-*/;
+   public final native boolean getLiveAnimalsIsConLocationHazardToAnimal()
+   /*-{
+      return this.is_con_location_hazard_to_animal;
+   }-*/;
+   public final native boolean getLiveAnimalsIsConLocationHazardToHumans()
+   /*-{
+      return this.is_con_location_hazard_to_humans;
+   }-*/;
+   public final native boolean getLiveAnimalsIsConUnknown()
+   /*-{
+      return this.is_con_unknown;
+   }-*/;
+   public final native boolean getLiveAnimalsIsConOther()
+   /*-{
+      return this.is_con_other;
+   }-*/;
+   public final native boolean getLiveAnimalsIsActionLeftAtSite()
+   /*-{
+      return this.is_action_left_at_site;
+   }-*/;
+   public final native boolean getLiveAnimalsIsActionImmediateReleaseAtSite()
+   /*-{
+      return this.is_action_immediate_release_at_site;
+   }-*/;
+   public final native boolean getLiveAnimalsIsActionRelocated()
+   /*-{
+      return this.is_action_relocated;
+   }-*/;
+   public final native boolean getLiveAnimalsIsActionDiedAtSite()
+   /*-{
+      return this.is_action_died_at_site;
+   }-*/;
+   public final native boolean getLiveAnimalsIsActionDiedDuringTransport()
+   /*-{
+      return this.is_action_died_during_transport;
+   }-*/;
+   public final native boolean getLiveAnimalsIsActionEuthanizedAtSite()
+   /*-{
+      return this.is_action_euthanized_at_site;
+   }-*/;
+   public final native boolean getLiveAnimalsIsActionEuthanizedDuringTransport()
+   /*-{
+      return this.is_action_euthanized_during_transport;
+   }-*/;
+   public final native boolean getLiveAnimalsIsActionTransferredToRehab()
+   /*-{
+      return this.is_action_transferred_to_rehab;
+   }-*/;
+   public final native boolean getLiveAnimalsIsActionOther()
+   /*-{
+      return this.is_action_other;
+   }-*/;
+
+   public final native String getLiveAnimalsRelocatedLocation()
+   /*-{
+      return this.relocated_location;
+   }-*/;
+   
+   //************************ Human Interaction Sections *************************
+   
+   public final native JavaScriptObject getHumanInteractionSections()
+   /*-{
+      return this.report_human_interaction_sections;
+   }-*/;
+   
+   //************************ Attachments *************************
+
    public final native String getPhotosComment()
    /*-{
       return this.photos_comment;
