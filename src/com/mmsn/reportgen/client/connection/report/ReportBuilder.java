@@ -171,10 +171,9 @@ public class ReportBuilder
 			for (int index = 0; index < sectionDatas.length(); index++) {
 				ReportHumanInteractionSectionData sectionData = sectionDatas.get(index);
 				
-				ReportHumanInteractionSection section = new ReportHumanInteractionSection();
+				ReportHumanInteractionSection section = new ReportHumanInteractionSection(sectionData.getName());
 				
 				section.setExamined(sectionData.isExamined());
-				section.setName(sectionData.getName());
 				section.setPossibleHiLesion(sectionData.getPossibleHiLesion());
 				section.setPossibleSource(sectionData.getPossibleSource());
 				section.setScavengerDamage(sectionData.getScavengerDamage());

@@ -57,6 +57,7 @@
    "is_action_euthanized_during_transport":false,
    "is_action_transferred_to_rehab":false,
    "is_action_other":false,
+   "relocated_location":"",
    "attachments":[  
 
    ],

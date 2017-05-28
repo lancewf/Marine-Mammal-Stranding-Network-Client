@@ -88,7 +88,7 @@ public class ReportHumanInteractionSectionControl extends VerticalPanel
    
    public ReportHumanInteractionSection getReportHumanInteractionSection()
    {
-	   ReportHumanInteractionSection reportHumanInteractionSection = new ReportHumanInteractionSection();
+	   ReportHumanInteractionSection reportHumanInteractionSection = new ReportHumanInteractionSection(name);
       
 	   fillReportHumanInteractionSection(reportHumanInteractionSection);
       

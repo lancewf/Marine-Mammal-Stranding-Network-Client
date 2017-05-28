@@ -20,8 +20,8 @@ public class ReportHumanInteractionSection {
 	// Constructor
 	// --------------------------------------------------------------------------
 
-	public ReportHumanInteractionSection() {
-
+	public ReportHumanInteractionSection(String name) {
+		this.name = name;
 	}
 
 	// --------------------------------------------------------------------------

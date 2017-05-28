@@ -32,7 +32,18 @@ public class ReportHumanInteraction {
 	// --------------------------------------------------------------------------
 
 	public ReportHumanInteraction() {
-
+		addSection(new ReportHumanInteractionSection(ROSTRUM_SNOUT));
+		addSection(new ReportHumanInteractionSection(MANDIBLE));
+		addSection(new ReportHumanInteractionSection(HEAD));
+		addSection(new ReportHumanInteractionSection(L_FRONT_APPENDAGE));
+		addSection(new ReportHumanInteractionSection(R_FRONT_APPENDAGE));
+		addSection(new ReportHumanInteractionSection(BODY_R_L));
+		addSection(new ReportHumanInteractionSection(DORSUM_DORSAL_FIN));
+		addSection(new ReportHumanInteractionSection(VENTRUM));
+		addSection(new ReportHumanInteractionSection(PEDUNCLE));
+		addSection(new ReportHumanInteractionSection(L_REAR_APPENDAGE));
+		addSection(new ReportHumanInteractionSection(R_REAR_APPENDAGE));
+		addSection(new ReportHumanInteractionSection(FLUKES_TAIL));
 	}
 
 	// --------------------------------------------------------------------------
