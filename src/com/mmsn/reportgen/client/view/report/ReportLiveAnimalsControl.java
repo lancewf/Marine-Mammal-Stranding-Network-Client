@@ -1,5 +1,6 @@
 package com.mmsn.reportgen.client.view.report;
 
+import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -420,26 +421,48 @@ public class ReportLiveAnimalsControl extends VerticalPanel
 		flexTable.setCellSpacing(10);
 		flexTable.addStyleName("reportControlTable");
 		int rowIndex = 1;
+		int columnIndex = 0;
 		
+		HorizontalPanel panel1 = new HorizontalPanel();
+		panel1.addStyleName("reportLiveAnimalsControlTable");
 		isActionLeftAtSiteField = new CheckBox();
-		flexTable.setText(rowIndex, 0, "Left at Site:");
-		flexTable.setWidget(rowIndex, 1, isActionLeftAtSiteField);
+		panel1.add(new Label("Left at Site: "));
+		panel1.add(isActionLeftAtSiteField);
+		flexTable.setWidget(rowIndex, columnIndex, panel1);
+		columnIndex += 1;
 		
+		HorizontalPanel panel2 = new HorizontalPanel();
+		panel2.addStyleName("reportLiveAnimalsControlTable");
 		isActionImmediateReleaseAtSiteField = new CheckBox();
-		flexTable.setText(rowIndex, 2, "Immediate Release at Site:");
-		flexTable.setWidget(rowIndex, 3, isActionImmediateReleaseAtSiteField);
+		panel2.add(new Label("Immediate Release at Site: "));
+		panel2.add(isActionImmediateReleaseAtSiteField);
+		flexTable.setWidget(rowIndex, columnIndex, panel2);
+		columnIndex += 1;
 		
+		
+		HorizontalPanel panel3 = new HorizontalPanel();
+		panel3.addStyleName("reportLiveAnimalsControlTable");
 		isActionRelocatedField = new CheckBox();
-		flexTable.setText(rowIndex, 4, "Relocated:");
-		flexTable.setWidget(rowIndex, 5, isActionRelocatedField);
+		panel3.add(new Label("Relocated: "));
+		panel3.add(isActionRelocatedField);
+		flexTable.setWidget(rowIndex, columnIndex, panel3);
+		columnIndex += 1;
 		
+		
+		HorizontalPanel panel4 = new HorizontalPanel();
+		panel4.addStyleName("reportLiveAnimalsControlTable");
 		isActionDiedAtSiteField = new CheckBox();
-		flexTable.setText(rowIndex, 6, "Died at Site:");
-		flexTable.setWidget(rowIndex, 7, isActionDiedAtSiteField);
+		panel4.add(new Label("Died at Site: "));
+		panel4.add(isActionDiedAtSiteField);
+		flexTable.setWidget(rowIndex, columnIndex, panel4);
+		columnIndex += 1;
 		
+		HorizontalPanel panel5 = new HorizontalPanel();
+		panel5.addStyleName("reportLiveAnimalsControlTable");
 		isActionDiedDuringTransportField = new CheckBox();
-		flexTable.setText(rowIndex, 8, "Died During Transport:");
-		flexTable.setWidget(rowIndex, 9, isActionDiedDuringTransportField);
+		panel5.add(new Label("Died During Transport: "));
+		panel5.add(isActionDiedDuringTransportField);
+		flexTable.setWidget(rowIndex, columnIndex, panel5);
 		
 		return flexTable;
 	}
@@ -449,55 +472,85 @@ public class ReportLiveAnimalsControl extends VerticalPanel
 		flexTable.setCellSpacing(10);
 		flexTable.addStyleName("reportControlTable");
 		int rowIndex = 1;
+		int columnIndex = 0;
 		
+		HorizontalPanel panel1 = new HorizontalPanel();
+		panel1.addStyleName("reportLiveAnimalsControlTable");
 		isActionEuthanizedAtSiteField = new CheckBox();
-		flexTable.setText(rowIndex, 0, "Euthanized at Site:");
-		flexTable.setWidget(rowIndex, 1, isActionEuthanizedAtSiteField);
+		panel1.add(new Label("Euthanized at Site:"));
+		panel1.add(isActionEuthanizedAtSiteField);
+		flexTable.setWidget(rowIndex, columnIndex, panel1);
+		columnIndex += 1;
 		
+		HorizontalPanel panel2 = new HorizontalPanel();
+		panel2.addStyleName("reportLiveAnimalsControlTable");
 		isActionEuthanizedDuringTransportField = new CheckBox();
-		flexTable.setText(rowIndex, 2, "Euthanized During Transport:");
-		flexTable.setWidget(rowIndex, 3, isActionEuthanizedDuringTransportField);
+		panel2.add(new Label("Euthanized During Transport:"));
+		panel2.add(isActionEuthanizedDuringTransportField);
+		flexTable.setWidget(rowIndex, columnIndex, panel2);
+		columnIndex += 1;
 		
+		HorizontalPanel panel3 = new HorizontalPanel();
+		panel3.addStyleName("reportLiveAnimalsControlTable");
 		isActionTransferredToRehabField = new CheckBox();
-		flexTable.setText(rowIndex, 4, "Transferred to Rehab:");
-		flexTable.setWidget(rowIndex, 5, isActionTransferredToRehabField);
+		panel3.add(new Label("Transferred to Rehab:"));
+		panel3.add(isActionTransferredToRehabField);
+		flexTable.setWidget(rowIndex, columnIndex, panel3);
+		columnIndex += 1;
 		
+		HorizontalPanel panel4 = new HorizontalPanel();
+		panel4.addStyleName("reportLiveAnimalsControlTable");
 		isActionOtherField = new CheckBox();
-		flexTable.setText(rowIndex, 6, "Other:");
-		flexTable.setWidget(rowIndex, 7, isActionOtherField);
+		panel4.add(new Label("Other:"));
+		panel4.add(isActionOtherField);
+		flexTable.setWidget(rowIndex, columnIndex, panel4);
 		
 		return flexTable;
 	}
    
 	private FlexTable createConditionSecondRow() {
-		FlexTable flexTable2 = new FlexTable();
-		flexTable2.setCellSpacing(10);
-		flexTable2.addStyleName("reportControlTable");
+		FlexTable flexTable = new FlexTable();
+		flexTable.setCellSpacing(10);
+		flexTable.addStyleName("reportControlTable");
 		int rowIndex = 1;
-
+		int columnIndex = 0;
+		
+		HorizontalPanel panel1 = new HorizontalPanel();
+		panel1.addStyleName("reportLiveAnimalsControlTable");
 		isConLocationHazardToAnimalField = new CheckBox();
+		panel1.add(new Label("Location is hazardous to animal:"));
+		panel1.add(isConLocationHazardToAnimalField);
+		flexTable.setWidget(rowIndex, columnIndex, panel1);
+		columnIndex += 1;
 
-		flexTable2.setText(rowIndex, 0, "Location is hazardous to animal:");
-		flexTable2.setWidget(rowIndex, 1, isConLocationHazardToAnimalField);
-
+		
+		HorizontalPanel panel2 = new HorizontalPanel();
+		panel2.addStyleName("reportLiveAnimalsControlTable");
 		isConLocationHazardToHumansField = new CheckBox();
+		panel2.add(new Label("Location is hazardous to humans:"));
+		panel2.add(isConLocationHazardToHumansField);
+		flexTable.setWidget(rowIndex, columnIndex, panel2);
+		columnIndex += 1;
 
-		flexTable2.setText(rowIndex, 2, "Location is hazardous to humans:");
-		flexTable2.setWidget(rowIndex, 3, isConLocationHazardToHumansField);
-
+		
+		HorizontalPanel panel3 = new HorizontalPanel();
+		panel3.addStyleName("reportLiveAnimalsControlTable");
 		isConUnknownField = new CheckBox();
-
-		flexTable2.setText(rowIndex, 4, "Unknown:");
-		flexTable2.setWidget(rowIndex, 5, isConUnknownField);
-
+		panel3.add(new Label("Unknown:"));
+		panel3.add(isConUnknownField);
+		flexTable.setWidget(rowIndex, columnIndex, panel3);
+		columnIndex += 1;
+		
+		HorizontalPanel panel4 = new HorizontalPanel();
+		panel4.addStyleName("reportLiveAnimalsControlTable");
 		isConOtherField = new CheckBox();
+		panel4.add(new Label("Other:"));
+		panel4.add(isConOtherField);
+		flexTable.setWidget(rowIndex, columnIndex, panel4);
 
-		flexTable2.setText(rowIndex, 6, "Other:");
-		flexTable2.setWidget(rowIndex, 7, isConOtherField);
+		flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
 
-		flexTable2.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
-
-		return flexTable2;
+		return flexTable;
 	}
    
 	private FlexTable createConditionFirstRow() {
@@ -506,36 +559,54 @@ public class ReportLiveAnimalsControl extends VerticalPanel
 		flexTable.addStyleName("reportControlTable");
 
 		int rowIndex = 1;
-
+		int columnIndex = 0;
+		
+		HorizontalPanel panel1 = new HorizontalPanel();
+		panel1.addStyleName("reportLiveAnimalsControlTable");
 		isConSickField = new CheckBox();
-
-		flexTable.setText(rowIndex, 0, "Sick:");
-		flexTable.setWidget(rowIndex, 1, isConSickField);
-
+		panel1.add(new Label("Sick:"));
+		panel1.add(isConSickField);
+		flexTable.setWidget(rowIndex, columnIndex, panel1);
+		columnIndex += 1;
+		
+		HorizontalPanel panel2 = new HorizontalPanel();
+		panel2.addStyleName("reportLiveAnimalsControlTable");
 		isConInjuredField = new CheckBox();
+		panel2.add(new Label("Injured:"));
+		panel2.add(isConInjuredField);
+		flexTable.setWidget(rowIndex, columnIndex, panel2);
+		columnIndex += 1;
 
-		flexTable.setText(rowIndex, 2, "Injured:");
-		flexTable.setWidget(rowIndex, 3, isConInjuredField);
-
+		HorizontalPanel panel3 = new HorizontalPanel();
+		panel3.addStyleName("reportLiveAnimalsControlTable");
 		isConOutOfHabitatField = new CheckBox();
+		panel3.add(new Label("Out of Habitat:"));
+		panel3.add(isConOutOfHabitatField);
+		flexTable.setWidget(rowIndex, columnIndex, panel3);
+		columnIndex += 1;
 
-		flexTable.setText(rowIndex, 4, "Out of Habitat:");
-		flexTable.setWidget(rowIndex, 5, isConOutOfHabitatField);
-
+		HorizontalPanel panel4 = new HorizontalPanel();
+		panel4.addStyleName("reportLiveAnimalsControlTable");
 		isConDeemedReleasableField = new CheckBox();
+		panel4.add(new Label("Deemed Releasable:"));
+		panel4.add(isConDeemedReleasableField);
+		flexTable.setWidget(rowIndex, columnIndex, panel4);
+		columnIndex += 1;
 
-		flexTable.setText(rowIndex, 6, "Deemed Releasable:");
-		flexTable.setWidget(rowIndex, 7, isConDeemedReleasableField);
-
+		HorizontalPanel panel5 = new HorizontalPanel();
+		panel5.addStyleName("reportLiveAnimalsControlTable");
 		isConAbandonedField = new CheckBox();
+		panel5.add(new Label("Abandoned:"));
+		panel5.add(isConAbandonedField);
+		flexTable.setWidget(rowIndex, columnIndex, panel5);
+		columnIndex += 1;
 
-		flexTable.setText(rowIndex, 8, "Abandoned:");
-		flexTable.setWidget(rowIndex, 9, isConAbandonedField);
-
+		HorizontalPanel panel6 = new HorizontalPanel();
+		panel6.addStyleName("reportLiveAnimalsControlTable");
 		isConInaccessibleField = new CheckBox();
-
-		flexTable.setText(rowIndex, 10, "Inaccessible:");
-		flexTable.setWidget(rowIndex, 11, isConInaccessibleField);
+		panel6.add(new Label("Inaccessible:"));
+		panel6.add(isConInaccessibleField);
+		flexTable.setWidget(rowIndex, columnIndex, panel6);
 
 		flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
 
