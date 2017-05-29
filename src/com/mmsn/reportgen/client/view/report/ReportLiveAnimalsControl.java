@@ -1,5 +1,8 @@
 package com.mmsn.reportgen.client.view.report;
 
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.FieldEvent;
+import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.TextField;
@@ -38,6 +41,7 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
    private CheckBox isActionTransferredToRehabField;
    private CheckBox isActionOtherField;
    private TextField<String> locationField;
+   private Label locationLabel;
    
    // --------------------------------------------------------------------------
    // Constructor
@@ -296,6 +300,8 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
 	   setActionOther(reportLiveAnimals.isActionOther());
 	   
 	   setLocation(reportLiveAnimals.getRelocatedLocation());
+	   
+	   relocatedChange(reportLiveAnimals.isActionRelocated());
    }
    
    public void fillReportLiveAnimals(ReportLiveAnimals reportLiveAnimals)
@@ -419,7 +425,8 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
 	  flexTable.setCellSpacing(10);
 	  flexTable.addStyleName("reportControlTable");
 		
-      flexTable.setText(1, 0, "Location (if relocated):");
+	  locationLabel = new Label("Location (if relocated):");
+      flexTable.setWidget(1, 0, locationLabel);
       flexTable.setWidget(1, 1, locationField);
       
       flexTable.getFlexCellFormatter().setColSpan(1, 1, 6);
@@ -454,6 +461,26 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
 		HorizontalPanel panel3 = new HorizontalPanel();
 		panel3.addStyleName("reportLiveAnimalsControlTable");
 		isActionRelocatedField = new CheckBox();
+		isActionRelocatedField.addListener(Events.Change, 
+		         new Listener<FieldEvent>()
+	      {
+	         @Override
+	         public void handleEvent(FieldEvent be)
+	         {
+	            CheckBox checkBox = (CheckBox)be.getBoxComponent();
+	          
+	            boolean isChecked = checkBox.getValue();
+	            
+	            if(isChecked){
+	            	locationField.setVisible(true);
+	            	locationLabel.setVisible(true);
+	            } else{
+	            	locationField.setVisible(false);
+	            	locationLabel.setVisible(false);
+	            }
+	         }
+	      });
+		
 		panel3.add(new Label("Relocated: "));
 		panel3.add(isActionRelocatedField);
 		flexTable.setWidget(rowIndex, columnIndex, panel3);
@@ -476,6 +503,16 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
 		flexTable.setWidget(rowIndex, columnIndex, panel5);
 		
 		return flexTable;
+	}
+	
+	private void relocatedChange(boolean isRelocated){
+        if(isRelocated){
+        	locationField.setVisible(true);
+        	locationLabel.setVisible(true);
+        } else{
+        	locationField.setVisible(false);
+        	locationLabel.setVisible(false);
+        }
 	}
 	
 	private FlexTable createActionSecondRow() {

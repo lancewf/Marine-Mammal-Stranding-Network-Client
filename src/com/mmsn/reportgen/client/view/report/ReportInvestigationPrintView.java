@@ -81,13 +81,13 @@ public class ReportInvestigationPrintView extends VerticalPanel
       tagsField.setText(reportInvestigation.getTags());
       conditionField.setText(reportInvestigation.getCondition());
       speciesField.setText(reportInvestigation.getSpecies());
-      latLonLocationField.setText(reportInvestigation.getLatLocation() + "/" + reportInvestigation.getLonLocation());
+      latLonLocationField.setText(reportInvestigation.getLatLocation() + "/" + reportInvestigation.getLonLocation() + "  " + reportInvestigation.getLocationAccuracy());
       physicalLocationField.setText(reportInvestigation.getPhysicalLocation());
       investigatorSupportField.setText(reportInvestigation.getInvestigatorSupport());
       
       if(reportInvestigation.isAnimalNotFound())
       {
-         animalNotFoundField.setText("X");
+         animalNotFoundField.setText("[X]");
          girthField.setVisible(false);
          girthlabel.setVisible(false);
          straightLengthField.setVisible(false);
@@ -105,7 +105,7 @@ public class ReportInvestigationPrintView extends VerticalPanel
       }
       else
       {
-         animalNotFoundField.setText("_");
+         animalNotFoundField.setText("[_]");
          girthField.setVisible(true);
          girthlabel.setVisible(true);
          straightLengthField.setVisible(true);
@@ -141,7 +141,7 @@ public class ReportInvestigationPrintView extends VerticalPanel
    {
       addStyleName("printPage");
       
-      add(new HTML("<h4>INVESTIGATION</h4>"));
+      add(new HTML("<h4>Investigation</h4>"));
       
       FlexTable flexTable = new FlexTable();
       
@@ -161,7 +161,7 @@ public class ReportInvestigationPrintView extends VerticalPanel
       
       flexTable.setWidget(index, 0, createPhysicalLocationControl());
       
-      flexTable.setWidget(index, 0, createLatLonLocationControl());
+      flexTable.setWidget(index, 1, createLatLonLocationControl());
       
       flexTable.getFlexCellFormatter().setColSpan(index, 0, 2);
 
