@@ -8,6 +8,7 @@ import com.extjs.gxt.ui.client.event.FieldEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.DatePicker;
+import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
@@ -35,11 +36,13 @@ public class ReportInvestigationControl extends VerticalPanel
    private TextField<String> investigatorSupportField;
    private TimeField timeField;
    private DatePicker datePicker;
-   private TextField<String> latLonlocationField;
+   private TextField<String> latlocationField;
+   private TextField<String> lonlocationField;
    private TextField<String> physicalLocationField;
    private SpeciesField speciesField;
    private CheckBox animalNotFoundField;
    private ComboBox<StringModel> conditionComboBox;
+   private ComboBox<StringModel> locationAccuracyComboBox;
    private TextField<String> tagsField;
    private ComboBox<StringModel> dispositionComboBox;
    private ComboBox<StringModel> sealPickupComboBox;
@@ -97,10 +100,12 @@ public class ReportInvestigationControl extends VerticalPanel
    {
       setInvestigatorSupport(reportInvestigation.getInvestigatorSupport());
       setDate(reportInvestigation.getDate());
-      setLatLonLocation(reportInvestigation.getLatLonLocation());
+      setLatLocation(reportInvestigation.getLatLocation());
+      setLonLocation(reportInvestigation.getLonLocation());
       setPhysicalLocation(reportInvestigation.getPhysicalLocation());
       setSpecies(reportInvestigation.getSpecies());
       setAnimalNotFound(reportInvestigation.isAnimalNotFound());
+      setLocationAccuracy(reportInvestigation.getLocationAccuracy());
       setCondition(reportInvestigation.getCondition());
       setTags(reportInvestigation.getTags());
       setDisposition(reportInvestigation.getDisposition());
@@ -116,12 +121,13 @@ public class ReportInvestigationControl extends VerticalPanel
    {
       reportInvestigation.setInvestigatorSupport(getInvestigatorSupport());
       reportInvestigation.setDate(getDate());
-      reportInvestigation.setLatLonLocation(getLatLonLocation());
-      reportInvestigation.setLatLonLocation(getLatLonLocation());
+      reportInvestigation.setLatLocation(getLatLocation());
+      reportInvestigation.setLonLocation(getLonLocation());
       reportInvestigation.setPhysicalLocation(getPhysicalLocation());
       reportInvestigation.setSpecies(getSpecies());
       reportInvestigation.setAnimalNotFound(isAnimalNotFound());
       reportInvestigation.setCondition(getCondition());
+      reportInvestigation.setLocationAccuracy(getLocationAccuracy());
       reportInvestigation.setTags(getTags());
       reportInvestigation.setDisposition(getDisposition());
       reportInvestigation.setSealPickup(getSealPickup());
@@ -181,14 +187,24 @@ public class ReportInvestigationControl extends VerticalPanel
       physicalLocationField.setValue(physicalLocation);
    }
    
-   public String getLatLonLocation()
+   public String getLatLocation()
    {
-      return latLonlocationField.getRawValue();
+      return latlocationField.getRawValue();
    }
 
-   public void setLatLonLocation(String latLon)
+   public void setLatLocation(String latLon)
    {
-      latLonlocationField.setValue(latLon);
+      latlocationField.setValue(latLon);
+   }
+   
+   public String getLonLocation()
+   {
+      return lonlocationField.getRawValue();
+   }
+
+   public void setLonLocation(String latLon)
+   {
+      lonlocationField.setValue(latLon);
    }
 
    public String getSpecies()
@@ -209,6 +225,16 @@ public class ReportInvestigationControl extends VerticalPanel
    public void setCondition(String condition)
    {
       conditionComboBox.setValue(new StringModel(condition));
+   }
+
+   public String getLocationAccuracy()
+   {
+      return locationAccuracyComboBox.getRawValue();
+   }
+
+   public void setLocationAccuracy(String locationAccuracy)
+   {
+	   locationAccuracyComboBox.setValue(new StringModel(locationAccuracy));
    }
 
    public String getTags()
@@ -344,11 +370,13 @@ public class ReportInvestigationControl extends VerticalPanel
       investigatorSupportField.setReadOnly(false);
       timeField.setReadOnly(false);
       datePicker.setEnabled(true);
-      latLonlocationField.setReadOnly(false);
+      latlocationField.setReadOnly(false);
+      lonlocationField.setReadOnly(false);
       physicalLocationField.setReadOnly(false);
       speciesField.setReadOnly(false);
       animalNotFoundField.setReadOnly(false);
       conditionComboBox.setReadOnly(false);
+      locationAccuracyComboBox.setReadOnly(false);
       tagsField.setReadOnly(false);
       dispositionComboBox.setReadOnly(false);
       sealPickupComboBox.setReadOnly(false);
@@ -365,11 +393,13 @@ public class ReportInvestigationControl extends VerticalPanel
       investigatorSupportField.setReadOnly(true);
       timeField.setReadOnly(true);
       datePicker.setEnabled(false);
-      latLonlocationField.setReadOnly(true);
+      latlocationField.setReadOnly(true);
+      lonlocationField.setReadOnly(true);
       physicalLocationField.setReadOnly(true);
       speciesField.setReadOnly(true);
       animalNotFoundField.setReadOnly(true);
       conditionComboBox.setReadOnly(true);
+      locationAccuracyComboBox.setReadOnly(true);
       tagsField.setReadOnly(true);
       dispositionComboBox.setReadOnly(true);
       sealPickupComboBox.setReadOnly(true);
@@ -433,15 +463,25 @@ public class ReportInvestigationControl extends VerticalPanel
       
       rowIndex++;
       
-      latLonlocationField = new TextField<String>();
-      latLonlocationField.setFieldLabel("Lat\\Lon");
-      latLonlocationField.setValue("");
-      latLonlocationField.setWidth(250);
+      latlocationField = new TextField<String>();
+      latlocationField.setFieldLabel("Lat");
+      latlocationField.setValue("");
+      latlocationField.setWidth(100);
+     
+      lonlocationField = new TextField<String>();
+      lonlocationField.setFieldLabel("Lon");
+      lonlocationField.setValue("");
+      lonlocationField.setWidth(100);
       
-      flexTable.setText(rowIndex, 0, "Lat\\Lon:");
-      flexTable.setWidget(rowIndex, 1, latLonlocationField);
-      
-      flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
+      flexTable.setText(rowIndex, 0, "Lat/Lon:");
+      HorizontalPanel panel1 = new HorizontalPanel();
+      panel1.add(latlocationField);
+      panel1.add(new Label("/"));
+      panel1.add(lonlocationField);
+      flexTable.setWidget(rowIndex, 1, panel1);
+     
+      flexTable.setText(rowIndex, 2, "Accuracy:");
+      flexTable.setWidget(rowIndex, 3, createLocationAccuracy());
       
       rowIndex++;
       
@@ -643,6 +683,23 @@ public class ReportInvestigationControl extends VerticalPanel
       dispositionComboBox.setForceSelection(true);
       
       return dispositionComboBox;
+   }
+   
+   private Widget createLocationAccuracy()
+   {
+      ListStore<StringModel> listStore = new ListStore<StringModel>();
+      
+      listStore.add(new StringModel("Estimated"));
+      listStore.add(new StringModel("Actual"));
+      
+      locationAccuracyComboBox = new ComboBox<StringModel>();
+      locationAccuracyComboBox.setFieldLabel("Location Accuracy");
+      locationAccuracyComboBox.setDisplayField("name");
+      locationAccuracyComboBox.setTriggerAction(TriggerAction.ALL);
+      locationAccuracyComboBox.setStore(listStore);
+      locationAccuracyComboBox.setForceSelection(true);
+      
+      return locationAccuracyComboBox;
    }
 
    private Widget createConditionControl()

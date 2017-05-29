@@ -129,9 +129,19 @@ public class ReportData extends JavaScriptObject
       return this.investigation_date_year;
    }-*/;
    
-   public final native String getInvestigationLatLonLocation()
+   public final native String getInvestigationLatLocation()
    /*-{
-      return this.investigation_lat_lon_location;
+      return this.investigation_lat_location;
+   }-*/;
+   
+   public final native String getInvestigationLonLocation()
+   /*-{
+      return this.investigation_lon_location;
+   }-*/;
+   
+   public final native String getInvestigationLocationAccuracy()
+   /*-{
+      return this.investigation_location_accuracy;
    }-*/;
    
    public final native String getInvestigationPhysicalLocation()

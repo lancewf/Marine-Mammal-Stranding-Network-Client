@@ -81,7 +81,7 @@ public class ReportInvestigationPrintView extends VerticalPanel
       tagsField.setText(reportInvestigation.getTags());
       conditionField.setText(reportInvestigation.getCondition());
       speciesField.setText(reportInvestigation.getSpecies());
-      latLonLocationField.setText(reportInvestigation.getLatLonLocation());
+      latLonLocationField.setText(reportInvestigation.getLatLocation() + "/" + reportInvestigation.getLonLocation());
       physicalLocationField.setText(reportInvestigation.getPhysicalLocation());
       investigatorSupportField.setText(reportInvestigation.getInvestigatorSupport());
       

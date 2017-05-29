@@ -84,7 +84,9 @@ public class ReportBuilder
       
       reportInvestigation.setDate(investigationDate);
       
-      reportInvestigation.setLatLonLocation(reportData.getInvestigationLatLonLocation());
+      reportInvestigation.setLatLocation(reportData.getInvestigationLatLocation());
+      reportInvestigation.setLonLocation(reportData.getInvestigationLonLocation());
+      reportInvestigation.setLocationAccuracy(reportData.getInvestigationLocationAccuracy());
       reportInvestigation.setPhysicalLocation(reportData.getInvestigationPhysicalLocation());
       reportInvestigation.setSpecies(reportData.getInvestigationSpecies());
       reportInvestigation.setAnimalNotFound(reportData.getAnimalNotFound());

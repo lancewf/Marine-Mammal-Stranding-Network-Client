@@ -105,7 +105,9 @@ public class Report
       request.put("investigation_date_dayofmonth", new JSONString(dayFormater.format(investigationDate)));      
       request.put("investigation_date_month", new JSONString(monthFormater.format(investigationDate)));      
       request.put("investigation_date_year", new JSONString(yearFormater.format(investigationDate)));
-      request.put("investigation_lat_lon_location", new JSONString(reportInvestigation.getLatLonLocation()));
+      request.put("investigation_lat_location", new JSONString(reportInvestigation.getLatLocation()));
+      request.put("investigation_lon_location", new JSONString(reportInvestigation.getLonLocation()));
+      request.put("investigation_location_accuracy", new JSONString(reportInvestigation.getLocationAccuracy()));
       request.put("investigation_physical_location", new JSONString(reportInvestigation.getPhysicalLocation()));
       request.put("investigation_species", new JSONString(reportInvestigation.getSpecies()));
       request.put("animal_not_found", JSONBoolean.getInstance(reportInvestigation.isAnimalNotFound()));

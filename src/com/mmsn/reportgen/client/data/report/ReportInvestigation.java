@@ -10,11 +10,13 @@ public class ReportInvestigation
    
    private String investigatorSupport;
    private Date date;
-   private String latLonLocation;
+   private String latLocation;
+   private String lonLocation;
    private String physicalLocation;
    private String species;
    private boolean animalNotFound;
    private String condition;
+   private String locationAccuracy;
    private String tags;
    private String disposition;
    private String sealPickup;
@@ -41,15 +43,24 @@ public class ReportInvestigation
    {
       return investigatorSupport;
    }
-
-   public String getLatLonLocation()
+   public String getLatLocation()
    {
-      return latLonLocation;
+      return latLocation;
    }
 
-   public void setLatLonLocation(String latLonLocation)
+   public void setLatLocation(String latLocation)
    {
-      this.latLonLocation = latLonLocation;
+      this.latLocation = latLocation;
+   }
+   
+   public String getLonLocation()
+   {
+      return lonLocation;
+   }
+
+   public void setLonLocation(String lonLocation)
+   {
+      this.lonLocation = lonLocation;
    }
 
    public String getPhysicalLocation()
@@ -95,6 +106,16 @@ public class ReportInvestigation
    public void setSpecies(String species)
    {
       this.species = species;
+   }
+   
+   public String getLocationAccuracy()
+   {
+      return locationAccuracy;
+   }
+
+   public void setLocationAccuracy(String locationAccuracy)
+   {
+      this.locationAccuracy = locationAccuracy;
    }
 
    public String getCondition()
