@@ -15,6 +15,7 @@ import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.mmsn.reportgen.client.data.report.ReportCall;
@@ -276,7 +277,10 @@ public class ReportCallControl extends VerticalPanel
 
    private void initialize()
    {
-      add(new HTML("<h3>Initial Report</h3><br />"));
+	  Label title = new Label("Initial Report");
+		  
+	  title.addStyleName("sectionTile");
+      add(title);
       
       FlexTable flexTable = new FlexTable();
       flexTable.setCellSpacing(10);

@@ -28,6 +28,11 @@
 	color: #039;
 }
 
+.sectionTile {
+	font-size: 250%;
+	font-weight: bold;
+}
+
 .blogTitle {
 	background: #eceff5;
 	font-size: large;

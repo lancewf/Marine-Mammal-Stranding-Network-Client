@@ -1,5 +1,6 @@
 package com.mmsn.reportgen.client.view.report;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.extjs.gxt.ui.client.event.Events;
@@ -54,6 +55,8 @@ public class ReportInvestigationControl extends VerticalPanel
    private Label girthLabel;
    private Label straightLengthLabel;
    private Label weightLabel;
+   
+   private ArrayList<AnimalStatusListener> animalStatusListeners = new ArrayList<AnimalStatusListener>();
    
    // --------------------------------------------------------------------------
    // Constructor
@@ -327,6 +330,10 @@ public class ReportInvestigationControl extends VerticalPanel
       commentsField.setValue(comments);
    }
    
+   public void registerForAnimalStatus(AnimalStatusListener animalStatusListener){
+	   animalStatusListeners.add(animalStatusListener);
+   }
+   
    // --------------------------------------------------------------------------
    // Private Members
    // --------------------------------------------------------------------------
@@ -375,7 +382,11 @@ public class ReportInvestigationControl extends VerticalPanel
    
    private void initialize()
    {
-      add(new HTML("<h3>INVESTIGATION</h3><br />"));
+	   
+	  Label title = new Label("Investigation");
+		  
+	  title.addStyleName("sectionTile");
+      add(title);
       
       FlexTable flexTable = new FlexTable();
       flexTable.setCellSpacing(10);
@@ -564,6 +575,14 @@ public class ReportInvestigationControl extends VerticalPanel
       straightLengthField.setVisible(!value);
       girthLabel.setVisible(!value);
       girthField.setVisible(!value);
+      
+      for(AnimalStatusListener animalStatusListener : animalStatusListeners){
+    	  if(value){
+    		  animalStatusListener.statusChange("NOT_FOUND");
+    	  } else{
+    		  animalStatusListener.statusChange("FOUND");    		  
+    	  }
+      }
    }
 
    private Widget createSexControl()
@@ -642,6 +661,23 @@ public class ReportInvestigationControl extends VerticalPanel
       conditionComboBox.setTriggerAction(TriggerAction.ALL);
       conditionComboBox.setStore(listStore);
       conditionComboBox.setForceSelection(true);
+      
+      conditionComboBox.addListener(Events.Select, 
+    	         new Listener<FieldEvent>()
+      {
+         @Override
+         public void handleEvent(FieldEvent be)
+         {
+        	 String status = getCondition();
+             for(AnimalStatusListener animalStatusListener : animalStatusListeners){
+            	 if (status.equalsIgnoreCase("Alive")) animalStatusListener.statusChange("ALIVE");
+            	 else if (status.equalsIgnoreCase("Injured")) animalStatusListener.statusChange("ALIVE");
+            	 else if (status.equalsIgnoreCase("Dead Fresh")) animalStatusListener.statusChange("DEAD");
+            	 else if (status.equalsIgnoreCase("Dead Stinky")) animalStatusListener.statusChange("DEAD");
+            	 else if (status.equalsIgnoreCase("Dead Ugly")) animalStatusListener.statusChange("DEAD");
+             }
+         }
+      });
       
       return conditionComboBox;
    }

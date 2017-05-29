@@ -10,7 +10,7 @@ import com.mmsn.reportgen.client.data.report.ReportHumanInteraction;
 import com.mmsn.reportgen.client.data.report.ReportHumanInteractionSection;
 import com.google.gwt.user.client.ui.Label;
 
-public class ReportHumanInteractionControl extends VerticalPanel {
+public class ReportHumanInteractionControl extends VerticalPanel implements AnimalStatusListener {
 	// --------------------------------------------------------------------------
 	// Private Data
 	// --------------------------------------------------------------------------
@@ -46,6 +46,14 @@ public class ReportHumanInteractionControl extends VerticalPanel {
 	// Public Members
 	// --------------------------------------------------------------------------
 
+	public void statusChange(String state){
+		if(state.equalsIgnoreCase("NOT_FOUND")){
+			setVisible(false);
+		} else{
+			setVisible(true);
+		}
+	}
+	
 	public boolean isVaild() {
 		return true;
 	}
@@ -130,7 +138,11 @@ public class ReportHumanInteractionControl extends VerticalPanel {
 	}
 
 	private void initialize() {
-		add(new HTML("<h3>Human Interaction</h3><br />"));
+		Label title = new Label("Human Interaction");
+		  
+		title.addStyleName("sectionTile");
+		
+		add(title);
 		add(new Label(
 				"Examine each of the following anatomical areas for lesions (e.g., impressions, lacerations, penetrating wounds, healed HI scars, \n "
 						+ "abrasions, etc). Indicate scavenger damage if it hinders your ability to examine the area."));

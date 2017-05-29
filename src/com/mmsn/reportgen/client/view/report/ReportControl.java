@@ -267,5 +267,8 @@ public class ReportControl extends VerticalPanel implements FormEditControl
       
       setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
       add(photoControl);
+      
+      reportInvestigationControl.registerForAnimalStatus(reportLiveAnimalsControl);
+      reportInvestigationControl.registerForAnimalStatus(reportHumanInteractionControl);
    }
 }

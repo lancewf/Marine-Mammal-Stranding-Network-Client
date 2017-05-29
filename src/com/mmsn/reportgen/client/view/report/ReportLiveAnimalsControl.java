@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.mmsn.reportgen.client.data.report.ReportLiveAnimals;
 import com.google.gwt.user.client.ui.Label;
 
-public class ReportLiveAnimalsControl extends VerticalPanel
+public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalStatusListener 
 {
    // --------------------------------------------------------------------------
    // Private Data
@@ -51,6 +51,14 @@ public class ReportLiveAnimalsControl extends VerticalPanel
    // --------------------------------------------------------------------------
    // Public Members
    // --------------------------------------------------------------------------
+   
+	public void statusChange(String state){
+		if(state.equalsIgnoreCase("NOT_FOUND") || state.equalsIgnoreCase("DEAD")){
+			setVisible(false);
+		} else{
+			setVisible(true);
+		}
+	}
    
    public boolean isVaild()
    {
@@ -386,7 +394,10 @@ public class ReportLiveAnimalsControl extends VerticalPanel
 
    private void initialize()
    {
-      add(new HTML("<h3>Live Animals</h3><br />"));
+	  Label title = new Label("Live Animals");
+	  
+	  title.addStyleName("sectionTile");
+      add(title);
       add(new Label("Make sure to work with coordinator to assess condition determination and actions to be taken with live animals!"));
       
       add(new HTML("<h3>Condition Determination:</h3><br />"));
