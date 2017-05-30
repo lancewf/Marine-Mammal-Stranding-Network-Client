@@ -476,8 +476,9 @@ public class ReportInvestigationControl extends VerticalPanel
       flexTable.setText(rowIndex, 0, "Lat/Lon:");
       HorizontalPanel panel1 = new HorizontalPanel();
       panel1.add(latlocationField);
-      panel1.add(new Label("/"));
+      panel1.add(new Label("N"));
       panel1.add(lonlocationField);
+      panel1.add(new Label("W"));
       flexTable.setWidget(rowIndex, 1, panel1);
      
       flexTable.setText(rowIndex, 2, "Accuracy:");

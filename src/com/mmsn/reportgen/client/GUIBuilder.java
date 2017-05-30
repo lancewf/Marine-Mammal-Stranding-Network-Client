@@ -98,8 +98,8 @@ public class GUIBuilder
 
    private ServiceLocations getServiceLocations()
    {
-      //return new ReleaseServiceLocations();
-      return new TestServiceLocations();
+      return new ReleaseServiceLocations();
+      //return new TestServiceLocations();
    }
 
    private LoginPanel createLoginPanel()

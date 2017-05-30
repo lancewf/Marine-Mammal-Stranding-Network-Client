@@ -8,3 +8,4 @@ war/WEB-INF/deploy/*
 .DS_Store
 war/client
 .ant-targets-build.xml
+client.zip

@@ -144,6 +144,15 @@ Test targets suppressed because -junit argument was not specified when running w
 
   <target name="build" depends="gwtc" description="Build this project" />
 
+  <target name="zip" depends="build" description="Build this project" >
+		<zip destfile="client.zip" >
+		  <mappedresources>
+        <fileset dir="war/client"/>
+        <globmapper from="*" to="client/*"/>
+      </mappedresources>	
+		</zip>
+  </target>
+
   <target name="war" depends="build" description="Create a war file">
     <zip destfile="Client.war" basedir="war"/>
   </target>
