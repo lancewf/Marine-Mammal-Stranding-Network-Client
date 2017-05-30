@@ -13,7 +13,7 @@ brew install ant
 ### install java
 brew cast install java
 
-### install gwt v2.4
+### install gwt v2.8.1
 
 http://www.gwtproject.org/versions.html
 Download and add the folder to your path in the ~/.profile
