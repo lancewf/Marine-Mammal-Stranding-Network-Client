@@ -169,6 +169,11 @@ public class ReportData extends JavaScriptObject
       return this.investigation_nutritional_condition;
    }-*/;
    
+   public final native String getInvestigationAgeClass()
+   /*-{
+      return this.investigation_age_class;
+   }-*/;
+   
    public final native String getTags()
    /*-{
       return this.tags;

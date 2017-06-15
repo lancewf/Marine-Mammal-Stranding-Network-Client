@@ -26,6 +26,7 @@ public class ReportInvestigation
    private double girth;
    private String comments;
    private String nutritionalCondition;
+   private String ageClass;
    
    // --------------------------------------------------------------------------
    // Constructor
@@ -39,7 +40,15 @@ public class ReportInvestigation
    // --------------------------------------------------------------------------
    // Public Members
    // --------------------------------------------------------------------------
-  
+   
+   public String getAgeClass() {
+	return ageClass;
+   }
+	
+   public void setAgeClass(String ageClass) {
+	  this.ageClass = ageClass;
+   }
+	
    public String getNutritionalCondition() {
 	  return nutritionalCondition;
    }

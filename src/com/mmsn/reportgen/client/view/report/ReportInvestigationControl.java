@@ -42,6 +42,7 @@ public class ReportInvestigationControl extends VerticalPanel
    private CheckBox animalNotFoundField;
    private ComboBox<StringModel> conditionComboBox;
    private ComboBox<StringModel> nutritionalConditionComboBox;
+   private ComboBox<StringModel> ageClassComboBox;
    private ComboBox<StringModel> locationAccuracyComboBox;
    private TextField<String> tagsField;
    private ComboBox<StringModel> dispositionComboBox;
@@ -58,6 +59,8 @@ public class ReportInvestigationControl extends VerticalPanel
    private Label girthLabel;
    private Label straightLengthLabel;
    private Label weightLabel;
+   private Label ageClassLabel;
+   private Label nutritionConditionLabel;
    
    private ArrayList<AnimalStatusListener> animalStatusListeners = new ArrayList<AnimalStatusListener>();
    
@@ -108,6 +111,7 @@ public class ReportInvestigationControl extends VerticalPanel
       setLocationAccuracy(reportInvestigation.getLocationAccuracy());
       setCondition(reportInvestigation.getCondition());
       setNutritionalCondition(reportInvestigation.getNutritionalCondition());
+      setAgeClass(reportInvestigation.getAgeClass());
       setTags(reportInvestigation.getTags());
       setDisposition(reportInvestigation.getDisposition());
       setSealPickup(reportInvestigation.getSealPickup());
@@ -128,6 +132,7 @@ public class ReportInvestigationControl extends VerticalPanel
       reportInvestigation.setSpecies(getSpecies());
       reportInvestigation.setAnimalNotFound(isAnimalNotFound());
       reportInvestigation.setCondition(getCondition());
+      reportInvestigation.setAgeClass(getAgeClass());
       reportInvestigation.setNutritionalCondition(getNutritionalCondition());
       reportInvestigation.setLocationAccuracy(getLocationAccuracy());
       reportInvestigation.setTags(getTags());
@@ -217,6 +222,16 @@ public class ReportInvestigationControl extends VerticalPanel
    public void setSpecies(String species)
    {
       speciesField.setValue(species);
+   }
+   
+   public String getAgeClass()
+   {
+      return ageClassComboBox.getRawValue();
+   }
+
+   public void setAgeClass(String ageClass)
+   {
+	   ageClassComboBox.setValue(new StringModel(ageClass));
    }
    
    public String getNutritionalCondition()
@@ -388,6 +403,7 @@ public class ReportInvestigationControl extends VerticalPanel
       speciesField.setReadOnly(false);
       animalNotFoundField.setReadOnly(false);
       conditionComboBox.setReadOnly(false);
+      ageClassComboBox.setReadOnly(false);
       nutritionalConditionComboBox.setReadOnly(false);
       locationAccuracyComboBox.setReadOnly(false);
       tagsField.setReadOnly(false);
@@ -412,6 +428,7 @@ public class ReportInvestigationControl extends VerticalPanel
       speciesField.setReadOnly(true);
       animalNotFoundField.setReadOnly(true);
       conditionComboBox.setReadOnly(true);
+      ageClassComboBox.setReadOnly(true);
       nutritionalConditionComboBox.setReadOnly(true);
       locationAccuracyComboBox.setReadOnly(true);
       tagsField.setReadOnly(true);
@@ -510,11 +527,6 @@ public class ReportInvestigationControl extends VerticalPanel
       
       rowIndex++;
       
-      flexTable.setText(rowIndex, 0, "Nutritional Condition:");
-      flexTable.setWidget(rowIndex, 1, createNutritionalConditionControl());
-      
-      rowIndex++;
-      
       animalNotFoundField = new CheckBox();
       animalNotFoundField.setFieldLabel("Animal not found");
       
@@ -605,6 +617,17 @@ public class ReportInvestigationControl extends VerticalPanel
       
       rowIndex++;
       
+      ageClassLabel = new Label("Age Class:");
+      nutritionConditionLabel = new Label("Nutritional Condition:");
+      
+      flexTable.setWidget(rowIndex, 0, nutritionConditionLabel);
+      flexTable.setWidget(rowIndex, 1, createNutritionalConditionControl());
+      
+      flexTable.setWidget(rowIndex, 2, ageClassLabel);
+      flexTable.setWidget(rowIndex, 3, createAgeClassControl());
+      
+      rowIndex++;
+      
       commentsField = new TextArea();
       commentsField.setFieldLabel("General Comments");
       commentsField.setValue("");
@@ -635,6 +658,10 @@ public class ReportInvestigationControl extends VerticalPanel
       straightLengthField.setVisible(!value);
       girthLabel.setVisible(!value);
       girthField.setVisible(!value);
+      ageClassComboBox.setVisible(!value);
+      nutritionalConditionComboBox.setVisible(!value);
+      ageClassLabel.setVisible(!value);
+      nutritionConditionLabel.setVisible(!value);
       
       for(AnimalStatusListener animalStatusListener : animalStatusListeners){
     	  if(value){
@@ -720,6 +747,25 @@ public class ReportInvestigationControl extends VerticalPanel
       locationAccuracyComboBox.setForceSelection(true);
       
       return locationAccuracyComboBox;
+   }
+   
+   private Widget createAgeClassControl()
+   {
+      ListStore<StringModel> listStore = new ListStore<StringModel>();
+      
+      listStore.add(new StringModel("Pup/Calf"));
+      listStore.add(new StringModel("Weaned Pup/Calf"));
+      listStore.add(new StringModel("Juvenile"));
+      listStore.add(new StringModel("Adult"));
+      
+      ageClassComboBox = new ComboBox<StringModel>();
+      ageClassComboBox.setFieldLabel("Age Class");
+      ageClassComboBox.setDisplayField("name");
+      ageClassComboBox.setTriggerAction(TriggerAction.ALL);
+      ageClassComboBox.setStore(listStore);
+      ageClassComboBox.setForceSelection(true);
+      
+      return ageClassComboBox;
    }
 
    private Widget createNutritionalConditionControl()

@@ -62,6 +62,9 @@ public class ReportInvestigationPrintView extends VerticalPanel
    private Label sealPickupLabel;
    private Label dispositionLabel;
    private Label tagsLabel;
+   private Label ageClassField;
+   private Label ageClassLabel;
+   private Label nutritionalConditionLabel;
    
    // --------------------------------------------------------------------------
    // Constructor
@@ -83,6 +86,7 @@ public class ReportInvestigationPrintView extends VerticalPanel
       tagsField.setText(reportInvestigation.getTags());
       conditionField.setText(reportInvestigation.getCondition());
       nutritionalConditionField.setText(reportInvestigation.getNutritionalCondition());
+      ageClassField.setText(reportInvestigation.getAgeClass());
       speciesField.setText(reportInvestigation.getSpecies());
       latLonLocationField.setText(reportInvestigation.getLatLocation() + "N" + reportInvestigation.getLonLocation() + "W  " + reportInvestigation.getLocationAccuracy());
       physicalLocationField.setText(reportInvestigation.getPhysicalLocation());
@@ -105,6 +109,10 @@ public class ReportInvestigationPrintView extends VerticalPanel
          dispositionLabel.setVisible(false);
          tagsField.setVisible(false);
          tagsLabel.setVisible(false);
+         nutritionalConditionLabel.setVisible(false);
+         nutritionalConditionField.setVisible(false);
+         ageClassLabel.setVisible(false);
+         ageClassField.setVisible(false);
       }
       else
       {
@@ -123,6 +131,10 @@ public class ReportInvestigationPrintView extends VerticalPanel
          dispositionLabel.setVisible(true);
          tagsField.setVisible(true);
          tagsLabel.setVisible(true);
+         nutritionalConditionLabel.setVisible(true);
+         nutritionalConditionField.setVisible(true);
+         ageClassLabel.setVisible(true);
+         ageClassField.setVisible(true);
       }
       
       girthField.setText(reportInvestigation.getGirth() + " cm");
@@ -174,9 +186,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
       
       flexTable.setWidget(index, 1, createConditionControl());
       
-      index++;
-      
-      flexTable.setWidget(index, 0, createNutritionalConditionControl());
       
       index++;
       
@@ -207,6 +216,11 @@ public class ReportInvestigationPrintView extends VerticalPanel
       flexTable.setWidget(index, 0, createStraightLenghtControl());
       
       flexTable.setWidget(index, 0, createGirthControl());
+      
+      index++;
+      
+      flexTable.setWidget(index, 0, createNutritionalConditionControl());
+      flexTable.setWidget(index, 1, createAgeClassControl());
       
       index++;
       
@@ -361,19 +375,37 @@ public class ReportInvestigationPrintView extends VerticalPanel
       return panel;
    }
    
+   private Widget createAgeClassControl()
+   {
+      HorizontalPanel panel = new HorizontalPanel();
+      
+      ageClassLabel = new Label("Age Class:");
+      
+      ageClassLabel.addStyleName("printLabel");
+      
+      ageClassField = new Label("");
+      
+      ageClassField.addStyleName("printField");
+      
+      panel.add(ageClassLabel);
+      panel.add(ageClassField);
+      
+      return panel;
+   }
+   
    private Widget createNutritionalConditionControl()
    {
       HorizontalPanel panel = new HorizontalPanel();
       
-      Label label2 = new Label("Nutritional Condition:");
+      nutritionalConditionLabel = new Label("Nutritional Condition:");
       
-      label2.addStyleName("printLabel");
+      nutritionalConditionLabel.addStyleName("printLabel");
       
       nutritionalConditionField = new Label("");
       
       nutritionalConditionField.addStyleName("printField");
       
-      panel.add(label2);
+      panel.add(nutritionalConditionLabel);
       panel.add(nutritionalConditionField);
       
       return panel;
