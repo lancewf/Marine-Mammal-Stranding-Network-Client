@@ -8,15 +8,15 @@ import com.google.gwt.json.client.JSONValue;
 
 public class ReportHumanInteraction {
 	
-	public static final String ROSTRUM_SNOUT     = "Rostrum/snout";
-	public static final String MANDIBLE          = "Mandible";
+	public static final String ROSTRUM_SNOUT     = "Nose";
+	public static final String MANDIBLE          = "Jaw";
 	public static final String HEAD              = "Head";
 	public static final String L_FRONT_APPENDAGE = "L Front appendage";
 	public static final String R_FRONT_APPENDAGE = "R Front appendage";
 	public static final String BODY_R_L          = "Body R L";
-	public static final String DORSUM_DORSAL_FIN = "Dorsum/dorsal fin";
-	public static final String VENTRUM           = "Ventrum";
-	public static final String PEDUNCLE          = "Peduncle";
+	public static final String DORSUM_DORSAL_FIN = "Back";
+	public static final String VENTRUM           = "Belly";
+	public static final String PEDUNCLE          = "Peduncle/tail stock";
 	public static final String L_REAR_APPENDAGE  = "L Rear appendage";
 	public static final String R_REAR_APPENDAGE  = "R Rear appendage";
 	public static final String FLUKES_TAIL       = "Flukes/tail";
