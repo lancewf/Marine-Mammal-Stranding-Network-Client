@@ -27,6 +27,7 @@ public class ReportLiveAnimals {
 	private boolean isActionEuthanizedDuringTransport;
 	private boolean isActionTransferredToRehab;
 	private boolean isActionOther;
+	private String  comments;
 	
 	private String relocatedLocation;
 
@@ -41,6 +42,14 @@ public class ReportLiveAnimals {
 	// --------------------------------------------------------------------------
 	// Public Members
 	// --------------------------------------------------------------------------
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
 
 	public boolean isConSick() {
 		return isConSick;

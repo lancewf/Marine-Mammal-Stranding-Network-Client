@@ -40,6 +40,8 @@ public class ReportLiveAnimalsPrintView extends VerticalPanel
    private Label relocatedLocationField;
    private Label relocatedLocationTag;
    
+   private Label commentsField;
+   
    // --------------------------------------------------------------------------
    // Constructor
    // --------------------------------------------------------------------------
@@ -52,6 +54,8 @@ public class ReportLiveAnimalsPrintView extends VerticalPanel
    // --------------------------------------------------------------------------
    // Public Members
    // --------------------------------------------------------------------------
+   
+
    
    public void setReportLiveAnimals(ReportLiveAnimals reportLiveAnimals)
    {
@@ -77,6 +81,8 @@ public class ReportLiveAnimalsPrintView extends VerticalPanel
 	   setText(isActionEuthanizedDuringTransportField, reportLiveAnimals.isActionEuthanizedDuringTransport());
 	   setText(isActionTransferredToRehabField, reportLiveAnimals.isActionTransferredToRehab());
 	   setText(isActionOtherField, reportLiveAnimals.isActionOther());
+	   
+	   commentsField.setText(reportLiveAnimals.getComments());
 	   
 	   if(reportLiveAnimals.isActionRelocated()){
 		   relocatedLocationField.setVisible(true);
@@ -111,6 +117,10 @@ public class ReportLiveAnimalsPrintView extends VerticalPanel
       add(createActionSecondRow());
       
       add(createRelocatedLocationControl());
+      
+      commentsField = new Label("");
+      commentsField.addStyleName("printField");
+      add(commentsField);
       
       add(new HTML("<br></br>"));
    }
@@ -204,18 +214,18 @@ public class ReportLiveAnimalsPrintView extends VerticalPanel
    }
    
    private Widget createField(Label label, String tag){
-	      HorizontalPanel panel = new HorizontalPanel();
-	      
-	      Label label1 = new Label(tag);
-	      
-	      label1.addStyleName("printLabel");
-	      
-	      label.addStyleName("printField");
-	      
-	      panel.add(label);
-	      panel.add(label1);
-	      
-	      return panel;
+      HorizontalPanel panel = new HorizontalPanel();
+      
+      Label label1 = new Label(tag);
+      
+      label1.addStyleName("printLabel");
+      
+      label.addStyleName("printField");
+      
+      panel.add(label);
+      panel.add(label1);
+      
+      return panel;
    }
 
    private void setText(Label label, boolean isChecked){

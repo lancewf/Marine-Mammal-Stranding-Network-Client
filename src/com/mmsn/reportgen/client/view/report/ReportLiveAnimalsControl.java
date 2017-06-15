@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.mmsn.reportgen.client.data.report.ReportLiveAnimals;
 import com.google.gwt.user.client.ui.Label;
+import com.extjs.gxt.ui.client.widget.form.TextArea;
 
 public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalStatusListener 
 {
@@ -42,6 +43,7 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
    private CheckBox isActionOtherField;
    private TextField<String> locationField;
    private Label locationLabel;
+   private TextArea commentsField;
    
    // --------------------------------------------------------------------------
    // Constructor
@@ -259,6 +261,16 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
 	   isConLocationHazardToAnimalField.setValue(isConLocationHazardToAnimal);
    }
    
+   public String getComments()
+   {
+      return commentsField.getRawValue();
+   }
+
+   public void setComments(String comments)
+   {
+      commentsField.setValue(comments);
+   }
+   
    public boolean isReadOnly()
    {
       return readOnly;
@@ -298,6 +310,7 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
 	   setActionEuthanizedDuringTransport(reportLiveAnimals.isActionEuthanizedDuringTransport());
 	   setActionTransferredToRehab(reportLiveAnimals.isActionTransferredToRehab());
 	   setActionOther(reportLiveAnimals.isActionOther());
+	   setComments(reportLiveAnimals.getComments());
 	   
 	   setLocation(reportLiveAnimals.getRelocatedLocation());
 	   
@@ -326,6 +339,7 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
 	   reportLiveAnimals.setActionEuthanizedDuringTransport(isActionEuthanizedDuringTransport());
 	   reportLiveAnimals.setActionTransferredToRehab(isActionTransferredToRehab());
 	   reportLiveAnimals.setActionOther(isActionOther());
+	   reportLiveAnimals.setComments(getComments());
 	   
 	   reportLiveAnimals.setRelocatedLocation(getLocation());
    }
@@ -368,6 +382,7 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
       isActionOtherField.setReadOnly(false);
       
       locationField.setReadOnly(false);
+      commentsField.setReadOnly(false);
    }
    
    private void setToReadOnly()
@@ -396,6 +411,7 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
       isActionOtherField.setReadOnly(true);
       
       locationField.setReadOnly(true);
+      commentsField.setReadOnly(true);
    }
 
    private void initialize()
@@ -430,6 +446,16 @@ public class ReportLiveAnimalsControl extends VerticalPanel implements AnimalSta
       flexTable.setWidget(1, 1, locationField);
       
       flexTable.getFlexCellFormatter().setColSpan(1, 1, 6);
+      
+      commentsField = new TextArea();
+      commentsField.setFieldLabel("General Comments");
+      commentsField.setValue("");
+      commentsField.setWidth(450);
+      commentsField.setHeight(80);
+      
+      flexTable.setText(2,0 , "General Comments:");
+      flexTable.setWidget(2,1, commentsField);
+      flexTable.getFlexCellFormatter().setColSpan(2, 1, 4);
       
       add(flexTable);
    }

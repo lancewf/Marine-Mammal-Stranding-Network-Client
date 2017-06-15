@@ -151,6 +151,7 @@ public class Report
       request.put("is_action_transferred_to_rehab", JSONBoolean.getInstance(reportLiveAnimals.isActionTransferredToRehab()));
       request.put("is_action_other", JSONBoolean.getInstance(reportLiveAnimals.isActionOther()));
       request.put("relocated_location", new JSONString(reportLiveAnimals.getRelocatedLocation()));
+      request.put("live_animals_comments", new JSONString(reportLiveAnimals.getComments()));
 
       //************************ Human Interaction *************************
       

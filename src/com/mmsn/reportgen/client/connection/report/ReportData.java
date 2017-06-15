@@ -298,6 +298,11 @@ public class ReportData extends JavaScriptObject
       return this.relocated_location;
    }-*/;
    
+   public final native String getLiveAnimalsComments()
+   /*-{
+      return this.live_animals_comments;
+   }-*/;
+   
    //************************ Human Interaction Sections *************************
    
    public final native JavaScriptObject getHumanInteractionSections()
