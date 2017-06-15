@@ -17,7 +17,6 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.form.TimeField;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -42,6 +41,7 @@ public class ReportInvestigationControl extends VerticalPanel
    private SpeciesField speciesField;
    private CheckBox animalNotFoundField;
    private ComboBox<StringModel> conditionComboBox;
+   private ComboBox<StringModel> nutritionalConditionComboBox;
    private ComboBox<StringModel> locationAccuracyComboBox;
    private TextField<String> tagsField;
    private ComboBox<StringModel> dispositionComboBox;
@@ -107,6 +107,7 @@ public class ReportInvestigationControl extends VerticalPanel
       setAnimalNotFound(reportInvestigation.isAnimalNotFound());
       setLocationAccuracy(reportInvestigation.getLocationAccuracy());
       setCondition(reportInvestigation.getCondition());
+      setNutritionalCondition(reportInvestigation.getNutritionalCondition());
       setTags(reportInvestigation.getTags());
       setDisposition(reportInvestigation.getDisposition());
       setSealPickup(reportInvestigation.getSealPickup());
@@ -127,6 +128,7 @@ public class ReportInvestigationControl extends VerticalPanel
       reportInvestigation.setSpecies(getSpecies());
       reportInvestigation.setAnimalNotFound(isAnimalNotFound());
       reportInvestigation.setCondition(getCondition());
+      reportInvestigation.setNutritionalCondition(getNutritionalCondition());
       reportInvestigation.setLocationAccuracy(getLocationAccuracy());
       reportInvestigation.setTags(getTags());
       reportInvestigation.setDisposition(getDisposition());
@@ -216,7 +218,17 @@ public class ReportInvestigationControl extends VerticalPanel
    {
       speciesField.setValue(species);
    }
+   
+   public String getNutritionalCondition()
+   {
+      return nutritionalConditionComboBox.getRawValue();
+   }
 
+   public void setNutritionalCondition(String nutritionalCondition)
+   {
+	   nutritionalConditionComboBox.setValue(new StringModel(nutritionalCondition));
+   }
+   
    public String getCondition()
    {
       return conditionComboBox.getRawValue();
@@ -376,6 +388,7 @@ public class ReportInvestigationControl extends VerticalPanel
       speciesField.setReadOnly(false);
       animalNotFoundField.setReadOnly(false);
       conditionComboBox.setReadOnly(false);
+      nutritionalConditionComboBox.setReadOnly(false);
       locationAccuracyComboBox.setReadOnly(false);
       tagsField.setReadOnly(false);
       dispositionComboBox.setReadOnly(false);
@@ -399,6 +412,7 @@ public class ReportInvestigationControl extends VerticalPanel
       speciesField.setReadOnly(true);
       animalNotFoundField.setReadOnly(true);
       conditionComboBox.setReadOnly(true);
+      nutritionalConditionComboBox.setReadOnly(true);
       locationAccuracyComboBox.setReadOnly(true);
       tagsField.setReadOnly(true);
       dispositionComboBox.setReadOnly(true);
@@ -493,6 +507,11 @@ public class ReportInvestigationControl extends VerticalPanel
       
       flexTable.setText(rowIndex, 2, "Overall Condition:");
       flexTable.setWidget(rowIndex, 3, createConditionControl());
+      
+      rowIndex++;
+      
+      flexTable.setText(rowIndex, 0, "Nutritional Condition:");
+      flexTable.setWidget(rowIndex, 1, createNutritionalConditionControl());
       
       rowIndex++;
       
@@ -703,6 +722,27 @@ public class ReportInvestigationControl extends VerticalPanel
       return locationAccuracyComboBox;
    }
 
+   private Widget createNutritionalConditionControl()
+   {
+      ListStore<StringModel> listStore = new ListStore<StringModel>();
+      
+      listStore.add(new StringModel("Excellent"));
+      listStore.add(new StringModel("Good"));
+      listStore.add(new StringModel("Fair"));
+      listStore.add(new StringModel("Poor"));
+      listStore.add(new StringModel("Not Determined"));
+      listStore.add(new StringModel("Unable To Determine"));
+      
+      nutritionalConditionComboBox = new ComboBox<StringModel>();
+      nutritionalConditionComboBox.setFieldLabel("Nutritional Condition");
+      nutritionalConditionComboBox.setDisplayField("name");
+      nutritionalConditionComboBox.setTriggerAction(TriggerAction.ALL);
+      nutritionalConditionComboBox.setStore(listStore);
+      nutritionalConditionComboBox.setForceSelection(true);
+      
+      return nutritionalConditionComboBox;
+   }
+   
    private Widget createConditionControl()
    {
       ListStore<StringModel> listStore = new ListStore<StringModel>();

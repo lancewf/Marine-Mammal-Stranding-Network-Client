@@ -38,6 +38,8 @@ public class ReportInvestigationPrintView extends VerticalPanel
    private Label tagsField;
 
    private Label conditionField;
+   
+   private Label nutritionalConditionField;
 
    private Label speciesField;
 
@@ -80,6 +82,7 @@ public class ReportInvestigationPrintView extends VerticalPanel
       dispositionField.setText(reportInvestigation.getDisposition());
       tagsField.setText(reportInvestigation.getTags());
       conditionField.setText(reportInvestigation.getCondition());
+      nutritionalConditionField.setText(reportInvestigation.getNutritionalCondition());
       speciesField.setText(reportInvestigation.getSpecies());
       latLonLocationField.setText(reportInvestigation.getLatLocation() + "N" + reportInvestigation.getLonLocation() + "W  " + reportInvestigation.getLocationAccuracy());
       physicalLocationField.setText(reportInvestigation.getPhysicalLocation());
@@ -170,6 +173,10 @@ public class ReportInvestigationPrintView extends VerticalPanel
       flexTable.setWidget(index, 0, createSpeciesControl());
       
       flexTable.setWidget(index, 1, createConditionControl());
+      
+      index++;
+      
+      flexTable.setWidget(index, 0, createNutritionalConditionControl());
       
       index++;
       
@@ -350,6 +357,24 @@ public class ReportInvestigationPrintView extends VerticalPanel
       
       panel.add(tagsLabel);
       panel.add(tagsField);
+      
+      return panel;
+   }
+   
+   private Widget createNutritionalConditionControl()
+   {
+      HorizontalPanel panel = new HorizontalPanel();
+      
+      Label label2 = new Label("Nutritional Condition:");
+      
+      label2.addStyleName("printLabel");
+      
+      nutritionalConditionField = new Label("");
+      
+      nutritionalConditionField.addStyleName("printField");
+      
+      panel.add(label2);
+      panel.add(nutritionalConditionField);
       
       return panel;
    }

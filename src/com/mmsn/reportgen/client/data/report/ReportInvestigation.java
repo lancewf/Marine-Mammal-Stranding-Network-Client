@@ -25,11 +25,12 @@ public class ReportInvestigation
    private double straightLength;
    private double girth;
    private String comments;
+   private String nutritionalCondition;
    
    // --------------------------------------------------------------------------
    // Constructor
    // --------------------------------------------------------------------------
-   
+
    public ReportInvestigation()
    {
       
@@ -39,6 +40,14 @@ public class ReportInvestigation
    // Public Members
    // --------------------------------------------------------------------------
   
+   public String getNutritionalCondition() {
+	  return nutritionalCondition;
+   }
+
+   public void setNutritionalCondition(String nutritionalCondition) {
+      this.nutritionalCondition = nutritionalCondition;
+   }
+   
    public String getInvestigatorSupport()
    {
       return investigatorSupport;
