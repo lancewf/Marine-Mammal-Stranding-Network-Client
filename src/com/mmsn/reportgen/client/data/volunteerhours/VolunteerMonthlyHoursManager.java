@@ -92,11 +92,11 @@ public class VolunteerMonthlyHoursManager
          volunteerHoursAddedSender.send();
          
          collectionOfVolunteerHours.add(volunteerHours);
+      } else  {
+         volunteerHoursModifiedSender.setVolunteerHours(volunteerHours);
+      
+         volunteerHoursModifiedSender.send();
       }
-      
-      volunteerHoursModifiedSender.setVolunteerHours(volunteerHours);
-      
-      volunteerHoursModifiedSender.send();
       
       dataChange();
    }
@@ -123,7 +123,7 @@ public class VolunteerMonthlyHoursManager
    
    public void updateMonth(int month, int year)
    {
-      if(!isDateSameAsCurrent(month, year) )
+      if(volunteer.getId() > 0 && !isDateSameAsCurrent(month, year) )
       {
          currentMonth = month;
          currentYear = year;

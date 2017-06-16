@@ -104,6 +104,7 @@ public class VolunteerManager implements VolunteerManagerable
          volunteers.add(volunteer);
          
          volunteerAddedSender.setVolunteer(volunteer);
+         volunteerAddedSender.setVolunteerManager(this);
          
          volunteerAddedSender.send();  
       }
@@ -192,6 +193,12 @@ public class VolunteerManager implements VolunteerManagerable
       Availablity availablity = volunteer.getAvailablity();
       
       return AvailabityManager.isAvailableNow(availablity);
+   }
+
+   public void setVolunteerId(Volunteer volunteer, int newId)
+   {
+       volunteer.setId(newId);
+       dataChange();
    }
    
    // --------------------------------------------------------------------------

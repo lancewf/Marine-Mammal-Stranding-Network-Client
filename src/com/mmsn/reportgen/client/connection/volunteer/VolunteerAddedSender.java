@@ -3,6 +3,7 @@ package com.mmsn.reportgen.client.connection.volunteer;
 import com.finfrock.client.SenderAndReceiver;
 import com.mmsn.reportgen.client.connection.ServiceLocations;
 import com.mmsn.reportgen.client.data.volunteer.Volunteer;
+import com.mmsn.reportgen.client.data.volunteer.VolunteerManager;
 
 public class VolunteerAddedSender extends SenderAndReceiver
 {
@@ -11,6 +12,7 @@ public class VolunteerAddedSender extends SenderAndReceiver
    // --------------------------------------------------------------------------
 
    private Volunteer volunteer;
+   private VolunteerManager volunteerManager;
    
    // --------------------------------------------------------------------------
    // Constructor
@@ -24,6 +26,11 @@ public class VolunteerAddedSender extends SenderAndReceiver
    // --------------------------------------------------------------------------
    // Public Members
    // --------------------------------------------------------------------------
+
+   public void setVolunteerManager(VolunteerManager volunteerManager)
+   {
+     this.volunteerManager = volunteerManager;
+   }
 
    public void setVolunteer(Volunteer volunteer)
    {
@@ -45,7 +52,8 @@ public class VolunteerAddedSender extends SenderAndReceiver
    {
       if(volunteer.getId() < 0)
       {
-         volunteer.setId(Integer.parseInt(reponse));
+         int newId = Integer.parseInt(reponse);
+         volunteerManager.setVolunteerId(volunteer, newId);
       }
    }
 
