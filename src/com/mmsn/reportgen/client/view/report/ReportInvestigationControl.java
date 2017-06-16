@@ -46,7 +46,6 @@ public class ReportInvestigationControl extends VerticalPanel
    private ComboBox<StringModel> locationAccuracyComboBox;
    private TextField<String> tagsField;
    private ComboBox<StringModel> dispositionComboBox;
-   private ComboBox<StringModel> sealPickupComboBox;
    private ComboBox<StringModel> sexComboBox;
    private NumberField weightField;
    private NumberField straightLengthField;
@@ -54,7 +53,6 @@ public class ReportInvestigationControl extends VerticalPanel
    private TextArea commentsField;
    private Label tagsLabel;
    private Label dispositionLabel;
-   private Label sealPickupLabel;
    private Label sexLabel;
    private Label girthLabel;
    private Label straightLengthLabel;
@@ -114,7 +112,6 @@ public class ReportInvestigationControl extends VerticalPanel
       setAgeClass(reportInvestigation.getAgeClass());
       setTags(reportInvestigation.getTags());
       setDisposition(reportInvestigation.getDisposition());
-      setSealPickup(reportInvestigation.getSealPickup());
       setSex(reportInvestigation.getSex());
       setWeight(reportInvestigation.getWeight());
       setStraightLength(reportInvestigation.getStraightLength());
@@ -137,7 +134,6 @@ public class ReportInvestigationControl extends VerticalPanel
       reportInvestigation.setLocationAccuracy(getLocationAccuracy());
       reportInvestigation.setTags(getTags());
       reportInvestigation.setDisposition(getDisposition());
-      reportInvestigation.setSealPickup(getSealPickup());
       reportInvestigation.setSex(getSex());
       reportInvestigation.setWeight(getWeight());
       reportInvestigation.setStraightLength(getStraightLength());
@@ -284,16 +280,6 @@ public class ReportInvestigationControl extends VerticalPanel
       dispositionComboBox.setValue(new StringModel(disposition));
    }
 
-   public String getSealPickup()
-   {
-      return sealPickupComboBox.getRawValue();
-   }
-
-   public void setSealPickup(String sealPickup)
-   {
-      sealPickupComboBox.setValue(new StringModel(sealPickup));
-   }
-
    public String getSex()
    {
       return sexComboBox.getRawValue();
@@ -408,7 +394,6 @@ public class ReportInvestigationControl extends VerticalPanel
       locationAccuracyComboBox.setReadOnly(false);
       tagsField.setReadOnly(false);
       dispositionComboBox.setReadOnly(false);
-      sealPickupComboBox.setReadOnly(false);
       sexComboBox.setReadOnly(false);
       weightField.setReadOnly(false);
       straightLengthField.setReadOnly(false);
@@ -433,7 +418,6 @@ public class ReportInvestigationControl extends VerticalPanel
       locationAccuracyComboBox.setReadOnly(true);
       tagsField.setReadOnly(true);
       dispositionComboBox.setReadOnly(true);
-      sealPickupComboBox.setReadOnly(true);
       sexComboBox.setReadOnly(true);
       weightField.setReadOnly(true);
       straightLengthField.setReadOnly(true);
@@ -571,14 +555,6 @@ public class ReportInvestigationControl extends VerticalPanel
       
       rowIndex++;
       
-      sealPickupLabel = new Label("Seal Pickup:");
-      flexTable.setWidget(rowIndex, 0, sealPickupLabel);
-      flexTable.setWidget(rowIndex, 1, createSealPickupControl());
-      
-      flexTable.getFlexCellFormatter().setColSpan(rowIndex, 1, 4);
-      
-      rowIndex++;
-      
       sexLabel = new Label("Sex:");
       flexTable.setWidget(rowIndex, 0, sexLabel);
       flexTable.setWidget(rowIndex, 1, createSexControl());
@@ -647,8 +623,6 @@ public class ReportInvestigationControl extends VerticalPanel
       tagsField.setVisible(!value);
       dispositionLabel.setVisible(!value);
       dispositionComboBox.setVisible(!value);
-      sealPickupLabel.setVisible(!value);
-      sealPickupComboBox.setVisible(!value);
       sexLabel.setVisible(!value);
       sexComboBox.setVisible(!value);
       
@@ -690,27 +664,6 @@ public class ReportInvestigationControl extends VerticalPanel
       sexComboBox.setValue(new StringModel("Not Determined"));
       
       return sexComboBox;
-   }
-
-   private Widget createSealPickupControl()
-   {
-      ListStore<StringModel> listStore = new ListStore<StringModel>();
-      
-      listStore.add(new StringModel("None"));
-      listStore.add(new StringModel("Injured"));
-      listStore.add(new StringModel("Harassment"));
-      listStore.add(new StringModel("Public Agent"));
-      listStore.add(new StringModel("Dog(s)"));
-      listStore.add(new StringModel("Sick"));
-      
-      sealPickupComboBox = new ComboBox<StringModel>();
-      sealPickupComboBox.setFieldLabel("Seal Pickup");
-      sealPickupComboBox.setDisplayField("name");
-      sealPickupComboBox.setTriggerAction(TriggerAction.ALL);
-      sealPickupComboBox.setStore(listStore);
-      sealPickupComboBox.setForceSelection(true);
-      
-      return sealPickupComboBox;
    }
 
    private Widget createDispositionControl()

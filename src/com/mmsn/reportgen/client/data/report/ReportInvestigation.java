@@ -19,7 +19,6 @@ public class ReportInvestigation
    private String locationAccuracy;
    private String tags;
    private String disposition;
-   private String sealPickup;
    private String sex;
    private double weight;
    private double straightLength;
@@ -164,16 +163,6 @@ public class ReportInvestigation
    public void setDisposition(String disposition)
    {
       this.disposition = disposition;
-   }
-
-   public String getSealPickup()
-   {
-      return sealPickup;
-   }
-
-   public void setSealPickup(String sealPickup)
-   {
-      this.sealPickup = sealPickup;
    }
 
    public String getSex()

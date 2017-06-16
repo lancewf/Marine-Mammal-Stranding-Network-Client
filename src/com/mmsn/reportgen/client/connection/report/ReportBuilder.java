@@ -93,7 +93,6 @@ public class ReportBuilder
       reportInvestigation.setCondition(reportData.getInvestigationCondition());
       reportInvestigation.setTags(reportData.getTags());
       reportInvestigation.setDisposition(reportData.getDisposition());
-      reportInvestigation.setSealPickup(reportData.getSealPickup());
       reportInvestigation.setSex(reportData.getSex());
       reportInvestigation.setWeight(reportData.getWeight());
       reportInvestigation.setStraightLength(reportData.getStraightLength());

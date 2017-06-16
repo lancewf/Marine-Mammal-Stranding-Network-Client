@@ -184,11 +184,6 @@ public class ReportData extends JavaScriptObject
       return this.disposition;
    }-*/;
    
-   public final native String getSealPickup()
-   /*-{
-      return this.seal_pickup;
-   }-*/;
-   
    public final native String getSex()
    /*-{
       return this.sex;

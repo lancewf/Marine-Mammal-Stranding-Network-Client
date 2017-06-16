@@ -116,7 +116,6 @@ public class Report
       request.put("investigation_age_class", new JSONString(reportInvestigation.getNutritionalCondition()));
       request.put("tags", new JSONString(reportInvestigation.getTags()));
       request.put("disposition", new JSONString(reportInvestigation.getDisposition()));
-      request.put("seal_pickup", new JSONString(reportInvestigation.getSealPickup()));
       request.put("sex", new JSONString(reportInvestigation.getSex()));
       request.put("weight", new JSONNumber(reportInvestigation.getWeight()));
       request.put("straight_length", new JSONNumber(reportInvestigation.getStraightLength()));

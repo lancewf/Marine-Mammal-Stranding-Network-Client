@@ -31,8 +31,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
 
    private Label sexField;
 
-   private Label sealPickupField;
-
    private Label dispositionField;
 
    private Label tagsField;
@@ -59,7 +57,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
    private Label straightLengthLabel;
    private Label weightLabel;
    private Label sexlabel;
-   private Label sealPickupLabel;
    private Label dispositionLabel;
    private Label tagsLabel;
    private Label ageClassField;
@@ -81,7 +78,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
    
    public void setReportInvestigation(ReportInvestigation reportInvestigation)
    {
-      sealPickupField.setText(reportInvestigation.getSealPickup());
       dispositionField.setText(reportInvestigation.getDisposition());
       tagsField.setText(reportInvestigation.getTags());
       conditionField.setText(reportInvestigation.getCondition());
@@ -103,8 +99,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
          weightLabel.setVisible(false);
          sexField.setVisible(false);
          sexlabel.setVisible(false);
-         sealPickupField.setVisible(false);
-         sealPickupLabel.setVisible(false);
          dispositionField.setVisible(false);
          dispositionLabel.setVisible(false);
          tagsField.setVisible(false);
@@ -125,8 +119,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
          weightLabel.setVisible(true);
          sexField.setVisible(true);
          sexlabel.setVisible(true);
-         sealPickupField.setVisible(true);
-         sealPickupLabel.setVisible(true);
          dispositionField.setVisible(true);
          dispositionLabel.setVisible(true);
          tagsField.setVisible(true);
@@ -203,8 +195,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
       
       flexTable.setWidget(index, 0, createDispositionControl());
       
-      flexTable.setWidget(index, 1, createSealPickupControl());
-
       index++;
       
       flexTable.setWidget(index, 0, createSexControl());
@@ -321,24 +311,6 @@ public class ReportInvestigationPrintView extends VerticalPanel
       return panel;
    }
    
-   private Widget createSealPickupControl()
-   {
-      HorizontalPanel panel = new HorizontalPanel();
-      
-      sealPickupLabel = new Label("Seal pickup:");
-      
-      sealPickupLabel.addStyleName("printLabel");
-      
-      sealPickupField = new Label("");
-      
-      sealPickupField.addStyleName("printField");
-      
-      panel.add(sealPickupLabel);
-      panel.add(sealPickupField);
-      
-      return panel;
-   }
-
    private Widget createDispositionControl()
    {
       HorizontalPanel panel = new HorizontalPanel();
