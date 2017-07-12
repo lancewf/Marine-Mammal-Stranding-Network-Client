@@ -73,6 +73,11 @@ public abstract class FormEditToolbar extends VerticalPanel
       leftPanel.add(button);
    }
    
+   public boolean isEditing()
+   {
+      return saveButton.isVisible();
+   }
+
    public void setIsNew(boolean isNewVolunteer)
    {
       this.isNewVolunteer = isNewVolunteer;
@@ -211,10 +216,6 @@ public abstract class FormEditToolbar extends VerticalPanel
       cancelButton.setVisible(true);
    }
 
-   private boolean isEditing()
-   {
-      return saveButton.isVisible();
-   }
    
    private void logoutButtonClicked()
    {
@@ -292,6 +293,7 @@ public abstract class FormEditToolbar extends VerticalPanel
                }
             }
 
+            deleteConfirmationPanel.setIsEditing(false);
             formEditControl.setReadOnly(true);
 
             editButton.setVisible(true);

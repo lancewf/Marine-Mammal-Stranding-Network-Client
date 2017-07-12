@@ -70,11 +70,11 @@ public class NavigationButton extends HorizontalPanel
                      panelLinkSeleted(panelName);
                   }
                });
-               Label label = new Label(" -> ");
+               Label label = new Label(" > ");
                label.addStyleName("navigationButton");
                
-               add(label);
                add(anchor);
+               add(label);
             }
          }
       });

@@ -71,7 +71,14 @@ public class DeleteConfirmationPanel extends DockPanel implements Panel
    {
       return new NullToolbar();
    }
+   private boolean isEditing = true;
+
+   public void setIsEditing(boolean isEditing){
+       this.isEditing = isEditing;
+   }
    
+   public boolean isEditing(){ return isEditing;}
+
    // --------------------------------------------------------------------------
    // Public Members
    // --------------------------------------------------------------------------

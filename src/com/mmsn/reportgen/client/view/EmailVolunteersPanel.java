@@ -63,6 +63,8 @@ public class EmailVolunteersPanel extends VerticalPanel implements Panel
       return this;
    }
 
+   public boolean isEditing(){ return false;}
+
    // --------------------------------------------------------------------------
    // Private Members
    // --------------------------------------------------------------------------

@@ -9,4 +9,6 @@ public interface Panel
    public Widget getWidget();
 
    public Widget getToolbar();
+
+   public boolean isEditing();
 }

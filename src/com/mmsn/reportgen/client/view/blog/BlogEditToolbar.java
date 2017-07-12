@@ -220,6 +220,7 @@ public abstract class BlogEditToolbar extends VerticalPanel
                resetControl();
             }
 
+            deleteConfirmationPanel.setIsEditing(false);
             readOnlyMode();
 
             viewPanel.showPreivous();
@@ -251,6 +252,7 @@ public abstract class BlogEditToolbar extends VerticalPanel
                
             }
             
+            deleteConfirmationPanel.setIsEditing(false);
             viewPanel.showPreivous();
          }
       });

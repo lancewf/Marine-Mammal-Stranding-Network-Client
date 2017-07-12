@@ -82,6 +82,8 @@ implements Panel
    {
       return this;
    }
+
+   public boolean isEditing(){ return false;}
    
    // --------------------------------------------------------------------------
    // Private Members

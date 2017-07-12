@@ -60,6 +60,8 @@ public class VolunteerViewPanel extends VerticalPanel implements Panel
       return this;
    }
    
+   public boolean isEditing(){ return formEditToolbar.isEditing();}
+
    // --------------------------------------------------------------------------
    // Public Members
    // --------------------------------------------------------------------------

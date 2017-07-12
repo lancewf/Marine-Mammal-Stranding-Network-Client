@@ -77,6 +77,8 @@ public class VolunteerHoursReportPanel extends VerticalPanel implements Panel
       return this;
    }
 
+   public boolean isEditing(){ return false;}
+
    // --------------------------------------------------------------------------
    // Private Members
    // --------------------------------------------------------------------------
@@ -261,6 +263,16 @@ public class VolunteerHoursReportPanel extends VerticalPanel implements Panel
       yearBox.addItem("2016", "2016");
       yearBox.addItem("2017", "2017");
       yearBox.addItem("2018", "2018");
+      yearBox.addItem("2019", "2019");
+      yearBox.addItem("2020", "2020");
+      yearBox.addItem("2021", "2021");
+      yearBox.addItem("2022", "2022");
+      yearBox.addItem("2023", "2023");
+      yearBox.addItem("2024", "2024");
+      yearBox.addItem("2025", "2025");
+      yearBox.addItem("2026", "2026");
+      yearBox.addItem("2027", "2027");
+      yearBox.addItem("2028", "2028");
       
       DateWrapper currentDateDisplayed = new DateWrapper(new Date());
       

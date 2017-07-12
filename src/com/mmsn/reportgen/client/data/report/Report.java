@@ -112,8 +112,8 @@ public class Report
       request.put("investigation_species", new JSONString(reportInvestigation.getSpecies()));
       request.put("animal_not_found", JSONBoolean.getInstance(reportInvestigation.isAnimalNotFound()));
       request.put("investigation_condition", new JSONString(reportInvestigation.getCondition()));
-      request.put("investigation_nutritional_condition", new JSONString(reportInvestigation.getAgeClass()));
-      request.put("investigation_age_class", new JSONString(reportInvestigation.getNutritionalCondition()));
+      request.put("investigation_nutritional_condition", new JSONString(reportInvestigation.getNutritionalCondition()));
+      request.put("investigation_age_class", new JSONString(reportInvestigation.getAgeClass()));
       request.put("tags", new JSONString(reportInvestigation.getTags()));
       request.put("disposition", new JSONString(reportInvestigation.getDisposition()));
       request.put("sex", new JSONString(reportInvestigation.getSex()));

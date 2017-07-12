@@ -85,7 +85,7 @@ public class WidgetFactory
    // Public Members
    // --------------------------------------------------------------------------
 
-   public Panel getBlogPanel()
+   public BlogPanel getBlogPanel()
    {
       return new BlogPanel(user, blogManager, this);
    }

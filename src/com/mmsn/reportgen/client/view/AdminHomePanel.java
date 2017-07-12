@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.mmsn.reportgen.client.WidgetFactory;
+import com.mmsn.reportgen.client.view.blog.BlogPanel;
 
 public class AdminHomePanel extends VerticalPanel implements Panel
 {
@@ -49,6 +50,8 @@ public class AdminHomePanel extends VerticalPanel implements Panel
    {
       return widgetFactory.getNavigationToolbar();
    }
+
+   public boolean isEditing(){ return false;}
    
    // --------------------------------------------------------------------------
    // Private Members
@@ -154,8 +157,8 @@ public class AdminHomePanel extends VerticalPanel implements Panel
    private void showBlog()
    {
       ViewPanel viewPanel = widgetFactory.getViewPanel();
-      Panel panel = widgetFactory.getBlogPanel();
-      
+      BlogPanel panel = widgetFactory.getBlogPanel();
+      panel.closeBlogEntriesOpenForEdit();
       viewPanel.show(panel);
    }
    

@@ -31,6 +31,7 @@ public class BlogEntryControl extends VerticalPanel implements FormEditControl
    private User user;
    private WidgetFactory widgetFactory;
    private boolean readOnly = true;
+   private BlogEditToolbar formEditToolbar;
    
    // --------------------------------------------------------------------------
    // Constructor
@@ -50,6 +51,16 @@ public class BlogEntryControl extends VerticalPanel implements FormEditControl
    // --------------------------------------------------------------------------
    // Public Members
    // --------------------------------------------------------------------------
+
+     public void resetControl()
+     {
+        title.setText(blog.getTitle());
+        message.setText(blog.getMessage());
+        setReadOnly(true);
+        if(formEditToolbar != null){
+          formEditToolbar.readOnlyMode();
+        }
+     }
 
    @Override
    public void setReadOnly(boolean readOnly)
@@ -110,7 +121,8 @@ public class BlogEntryControl extends VerticalPanel implements FormEditControl
       
       if(user.isAdmin())
       {
-         panel.add(createToolbar());
+         formEditToolbar = createToolbar();
+         panel.add(formEditToolbar);
       }
       
       panel.add(horizontalPanel);
@@ -122,7 +134,7 @@ public class BlogEntryControl extends VerticalPanel implements FormEditControl
       add(panel);
    }
    
-   private Widget createToolbar()
+   private BlogEditToolbar createToolbar()
    {
       BlogEditToolbar formEditToolbar = 
          new BlogEditToolbar(widgetFactory, this)
@@ -130,8 +142,7 @@ public class BlogEntryControl extends VerticalPanel implements FormEditControl
          @Override
          protected void resetControl()
          {
-            title.setText(blog.getTitle());
-            message.setText(blog.getMessage());
+            BlogEntryControl.this.resetControl();
          }
 
          @Override

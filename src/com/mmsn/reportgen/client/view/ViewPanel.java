@@ -8,8 +8,11 @@ import com.finfrock.client.DataChangeListener;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.mmsn.reportgen.client.WidgetFactory;
+import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class ViewPanel extends VerticalPanel
 {
@@ -23,6 +26,9 @@ public class ViewPanel extends VerticalPanel
    private static String MARK = "MARK";
    private List<DataChangeListener> dataChangeListeners = 
       new ArrayList<DataChangeListener>();
+   private int moveBackCount = 0;
+   private boolean checkEditing = true;
+   private boolean inConfirmationMode = false;
    
    // --------------------------------------------------------------------------
    // Constructor
@@ -31,48 +37,57 @@ public class ViewPanel extends VerticalPanel
    public ViewPanel(WidgetFactory widgetFactory)
    {
       addStyleName("viewpanel");
+      setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
+      setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
       
-      String initToken = History.getToken();
-      if (initToken.length() == 0) 
-      {
-        History.newItem(MARK);
-      }
-      
+
       History.addValueChangeHandler(new ValueChangeHandler<String>()
       {
          @Override
          public void onValueChange(ValueChangeEvent<String> event)
          {
-            String token = event.getValue();
-            
-            if(token.equalsIgnoreCase(""))
-            {
-               final DeleteConfirmationPanel deleteConfirmationPanel = 
-                  new DeleteConfirmationPanel();
+             final String token = event.getValue();
+             consoleLog("token: " + token + " moveback count: " + moveBackCount + " checkEditing: " + checkEditing);
+             if(inConfirmationMode){
+                 History.newItem(currentPanel.getPanelName(), false);
+             } else if(moveBackCount == 0 && checkEditing && currentPanel != null && currentPanel.isEditing()){
+                 final DeleteConfirmationPanel deleteConfirmationPanel = new DeleteConfirmationPanel();
 
-               deleteConfirmationPanel
-                  .setText("Using the back button will leave the MMSN site. " +
-                  		"Would you like to leave the MMSN site?");
-
-               show(deleteConfirmationPanel);
-
-               deleteConfirmationPanel.addDataChangeListener(new DataChangeListener()
-               {
-                  @Override
-                  public void onDataChange()
-                  {
-                     if (deleteConfirmationPanel.getReponse() == DeleteConfirmationPanel.YES)
-                     {
-                        History.back();
-                     }
-                     else if (deleteConfirmationPanel.getReponse() == DeleteConfirmationPanel.NO)
-                     {
-                        History.newItem(MARK);
-                        showPreivous();
-                     }
-                  }
-               });
-            }
+                 deleteConfirmationPanel
+                    .setText("You have unsaved changes. Would you like to return to your page and save these changes?");
+                 inConfirmationMode = true;
+                 History.newItem(currentPanel.getPanelName(), false);
+                 show(deleteConfirmationPanel);
+                 
+                 deleteConfirmationPanel.addDataChangeListener(new DataChangeListener() {
+                    @Override
+                    public void onDataChange()
+                    {
+                       if (deleteConfirmationPanel.getReponse() == 
+                          DeleteConfirmationPanel.YES)
+                       {
+                          inConfirmationMode = false;
+                          deleteConfirmationPanel.setIsEditing(false);
+                          showPreivous();
+                       }else {
+                          inConfirmationMode = false;
+                          deleteConfirmationPanel.setIsEditing(false);
+                          checkEditing = false;
+                          moveBackCount = 1;
+                          History.back();
+                       }
+                    }
+                 });
+             } else{
+                 
+                showPreivousWithToken(token);
+                if(moveBackCount > 0){
+                    moveBackCount--;
+                    History.back();
+                } else{
+                   checkEditing = true;
+                }
+             }
          }
       });
       
@@ -85,19 +100,21 @@ public class ViewPanel extends VerticalPanel
    // Public Members
    // --------------------------------------------------------------------------
 
-   public void showPreivous()
+   public void showPreivous(){
+      History.back();
+   }
+
+   public void showPreivousWithToken(String token)
    {
       if (!widgetStack.isEmpty())
       {
          Panel current = widgetStack.pop();
 
-         if (!widgetStack.isEmpty())
-         {
-            Panel preivousPanel = widgetStack.peek();
+         if (!widgetStack.isEmpty()) {
+            Panel preivousPanel = widgetStack.pop();
             if (preivousPanel != null)
             {
-               widgetStack.pop();
-               show(preivousPanel);
+               show(preivousPanel, token );
             }
          }
          else
@@ -106,28 +123,62 @@ public class ViewPanel extends VerticalPanel
          }
       }
    }
-   
-   public void showPreivous(String panelName)
-   {
-      while(!currentPanel.getPanelName().equals(panelName))
-      {
-         showPreivous();
-      }
+
+  native void consoleLog( String message) /*-{
+      console.log( "me:" + message );
+  }-*/;
+
+   public void showPreivous(String panelName) {
+       if(!currentPanel.getPanelName().equals(panelName)){
+           moveBackCount = findHowManyPanelBack(panelName);
+           if(moveBackCount > 0){
+               moveBackCount--;
+               History.back();
+           }
+       }
    }
-   
-   public void show(Panel panel)
+
+  private int findHowManyPanelBack(String panelName){
+     
+      Stack<Panel> tempStack = new Stack<Panel>();
+      int count = 0;
+      Panel current = widgetStack.pop();
+      tempStack.push(current);
+      while(!current.getPanelName().equals(panelName)) {
+         current = widgetStack.pop();
+         tempStack.push(current);
+         count++;
+      }
+
+      while(!tempStack.isEmpty()){
+        current = tempStack.pop();
+        widgetStack.push(current);
+      }
+      
+      return count;
+  }
+
+   public void show(Panel panel, String item)
    {
+       item = item.replace(" ", "_");
       if(currentPanel != null)
       {
          removePanel(currentPanel);
       }
       
+      History.newItem(item, false);
+
       widgetStack.push(panel);
       addPanel(panel);
 
       currentPanel = panel;
       
       dataChanged();
+   }
+   
+   public void show(Panel panel)
+   {
+      show(panel, panel.getPanelName());
    }
    
    public void addDataChangeListener(DataChangeListener dataChangeListener)

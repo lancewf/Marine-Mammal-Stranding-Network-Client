@@ -98,6 +98,8 @@ public class ReportBuilder
       reportInvestigation.setStraightLength(reportData.getStraightLength());
       reportInvestigation.setGirth(reportData.getGirth());
       reportInvestigation.setComments(reportData.getInvestigationComments());
+      reportInvestigation.setAgeClass(reportData.getInvestigationAgeClass());
+      reportInvestigation.setNutritionalCondition(reportData.getInvestigationNutritionalCondition());
       
       report.setIsPhotoTaken(reportData.getIsPhotoTaken());
       
@@ -128,6 +130,7 @@ public class ReportBuilder
       reportLiveAnimals.setActionTransferredToRehab(reportData.getLiveAnimalsIsActionTransferredToRehab());
       reportLiveAnimals.setActionOther(reportData.getLiveAnimalsIsActionOther());
       reportLiveAnimals.setRelocatedLocation(reportData.getLiveAnimalsRelocatedLocation());
+      reportLiveAnimals.setComments(reportData.getLiveAnimalsComments());
       
       
       report.setReportLiveAnimals(reportLiveAnimals);

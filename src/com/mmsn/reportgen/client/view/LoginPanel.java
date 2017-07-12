@@ -82,6 +82,8 @@ public class LoginPanel extends DockPanel
    
    private void initialize()
    {
+      setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
+      setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
       FormPanel formPanel = new FormPanel();   
       formPanel.setBodyBorder(false);
       formPanel.setHeaderVisible(false);

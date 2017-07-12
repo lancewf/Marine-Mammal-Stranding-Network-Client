@@ -71,6 +71,10 @@ public class NavigationToolbar extends VerticalPanel
       
    }
    
+     protected void resetControl()
+     {
+
+     }
    // --------------------------------------------------------------------------
    // Private Members
    // --------------------------------------------------------------------------
@@ -146,8 +150,11 @@ public class NavigationToolbar extends VerticalPanel
                   DeleteConfirmationPanel.YES)
                {
                   save();
+               } else {
+                  resetControl();
                }
 
+               deleteConfirmationPanel.setIsEditing(false);
                viewPanel.showPreivous(panelName);
             }
          });

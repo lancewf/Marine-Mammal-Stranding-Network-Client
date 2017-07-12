@@ -80,6 +80,8 @@ public class VolunteerAddHoursCalendarPanel extends VerticalPanel implements Pan
       return this;
    }
    
+   public boolean isEditing(){ return false;}
+
    // --------------------------------------------------------------------------
    // Private Members
    // --------------------------------------------------------------------------

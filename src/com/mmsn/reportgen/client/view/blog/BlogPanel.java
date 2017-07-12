@@ -5,6 +5,7 @@ import java.util.HashMap;
 import com.finfrock.client.DataChangeListener;
 import com.finfrock.client.Returnable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.mmsn.reportgen.client.WidgetFactory;
@@ -68,6 +69,10 @@ public class BlogPanel extends VerticalPanel implements Panel
    {
       return this;
    }
+
+   public boolean isEditing(){ 
+      return areAnyBlogEntriesOpenForEdit();
+   }
    
    // --------------------------------------------------------------------------
    // Private Members
@@ -86,6 +91,11 @@ public class BlogPanel extends VerticalPanel implements Panel
          protected void save()
          {
             saveAllOpenBlogEntries();
+         }
+
+         protected void resetControl()
+         {
+            closeBlogEntriesOpenForEdit();
          }
       };
       
@@ -126,6 +136,7 @@ public class BlogPanel extends VerticalPanel implements Panel
    {
       addStyleName("viewpanelItem");
       
+      setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
       setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
       
       refreshPage();
@@ -181,6 +192,17 @@ public class BlogPanel extends VerticalPanel implements Panel
       }
    }
    
+   public void closeBlogEntriesOpenForEdit(){
+      for(int index = 0; index < getWidgetCount(); index++) {
+         Widget widget = getWidget(index);
+         
+         if(widget instanceof BlogEntryControl) {
+            BlogEntryControl blogEntryControl = (BlogEntryControl)widget;
+            blogEntryControl.resetControl();
+         }
+      }
+   }
+
    private boolean areAnyBlogEntriesOpenForEdit()
    {
       boolean blogEntryIsOpenForEdit = false;

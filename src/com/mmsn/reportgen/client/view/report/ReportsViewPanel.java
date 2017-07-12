@@ -68,6 +68,8 @@ public class ReportsViewPanel extends VerticalPanel
       return this;
    }
    
+   public boolean isEditing(){ return false;}
+
    // --------------------------------------------------------------------------
    // Public Members
    // --------------------------------------------------------------------------
